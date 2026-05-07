@@ -3,7 +3,6 @@ package com.sparta.apidev.entities;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -12,31 +11,31 @@ public class Trainee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "traineeid", nullable = false)
-    private Integer traineeid;
+    @Column(name = "traineeID", nullable = false)
+    private Integer traineeID;
 
-    @Column(name = "traineename", length = 50)
-    private String traineename;
+    @Column(name = "Trainee Name", length = 50)
+    private String traineeName;
 
-    @Column(name = "dob", length = 10)
+    @Column(name = "DoB", length = 10)
     private String dob;
 
-    @Column(name = "email", length = 40)
+    @Column(name = "Email", length = 40)
     private String email;
 
-    @Column(name = "title", length = 10)
+    @Column(name = "Title", length = 10)
     private String title;
 
     @ManyToMany
     @JoinTable(
-            name = "student_course",
-            joinColumns = @JoinColumn(name = "student_id"),
-            inverseJoinColumns = @JoinColumn(name = "course_id")
+            name = "StudentCourse",
+            joinColumns = @JoinColumn(name = "Student ID"),
+            inverseJoinColumns = @JoinColumn(name = "Course ID")
     )
     private Set<Course> traineeCourse = new HashSet<>();
 
     public Trainee(String name, String dob, String email, String title) {
-        this.traineename = name;
+        this.traineeName = name;
         this.dob = dob;
         this.email = email;
         this.title = title;
@@ -46,19 +45,19 @@ public class Trainee {
         
     }
 
-    public String getTraineename() {
-        return traineename;
+    public String getTraineeName() {
+        return traineeName;
     }
 
-    public void setTraineename(String traineename) {
-        this.traineename = traineename;
+    public void setTraineeName(String traineeName) {
+        this.traineeName = traineeName;
     }
 
-    public String getDob() {
+    public String getDoB() {
         return dob;
     }
 
-    public void setDob(String dob) {
+    public void setDoB(String dob) {
         this.dob = dob;
     }
 
@@ -90,12 +89,12 @@ public class Trainee {
         return traineeCourse;
     }
 
-    public int getId() {
-        return this.traineeid;
+    public int getID() {
+        return this.traineeID;
     }
 
-    public void setId(int id) {
-        this.traineeid = id;
+    public void setID(int id) {
+        this.traineeID = id;
     }
 
 }
