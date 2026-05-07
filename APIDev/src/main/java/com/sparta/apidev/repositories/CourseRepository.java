@@ -1,4 +1,7 @@
 package com.sparta.apidev.repositories;
 
-public class CourseRepository {
+import com.sparta.apidev.entities.Course;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CourseRepository extends JpaRepository<Course,  Integer> {
 }
