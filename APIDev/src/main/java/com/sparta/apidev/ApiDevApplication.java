@@ -1,4 +1,4 @@
-package src.main.java.com.sparta.apidev;
+package com.sparta.apidev;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

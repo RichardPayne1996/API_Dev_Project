@@ -26,7 +26,7 @@ public class Trainer {
     @Column(name = "title", length = 50)
     private String title;
 
-    //@ManyToMany(mappedBy = "courses")
+    //@ManyToMany(mappedBy = "TeacherCourse")
     //private List<Trainer> trainers = new ArrayList<>();
     @ManyToMany
     @JoinTable(
@@ -34,7 +34,7 @@ public class Trainer {
             joinColumns = @JoinColumn(name = "trainer_id"),
             inverseJoinColumns = @JoinColumn(name = "course_id")
     )
-    private List<Course> courses = new ArrayList<>();
+    private List<Course> TeacherCourse = new ArrayList<>();
 
     public Trainer(String trainerName, String dob, String email, String title) {
         this.trainerName = trainerName;
@@ -87,6 +87,6 @@ public class Trainer {
     }
 
     public List<Course> getCourses() {
-        return this.courses;
+        return this.TeacherCourse;
     }
 }
