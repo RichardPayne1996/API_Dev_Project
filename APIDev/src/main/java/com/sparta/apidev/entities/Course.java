@@ -17,10 +17,10 @@ public class Course {
     private Integer id;
 
 
-    @ManyToMany(mappedBy = "courses")
+    @ManyToMany(mappedBy = "traineeCourse")
     private Set<Trainee> trainees = new HashSet<>();
 
-    @ManyToMany(mappedBy = "courses")
+    @ManyToMany(mappedBy = "TeacherCourse")
     private List<Trainer> trainers = new ArrayList<>();
 
     public Course() {
