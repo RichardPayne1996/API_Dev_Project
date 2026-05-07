@@ -16,11 +16,10 @@ public class Course {
     @Column(name = "course_id", nullable = false)
     private Integer id;
 
-    // Trainee side (student_course table)
+
     @ManyToMany(mappedBy = "courses")
     private Set<Trainee> trainees = new HashSet<>();
 
-    // Trainer side (teaching table)
     @ManyToMany(mappedBy = "courses")
     private List<Trainer> trainers = new ArrayList<>();
 
