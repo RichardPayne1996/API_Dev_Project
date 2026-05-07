@@ -11,28 +11,28 @@ public class Trainer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "trainer_id", nullable = false)
-    private Integer id;
+    @Column(name = "Trainer ID", nullable = false)
+    private Integer trainerID;
 
-    @Column(name = "trainer_name", length = 40)
+    @Column(name = "Trainer Name", length = 40)
     private String trainerName;
 
-    @Column(name = "dob")
+    @Column(name = "DoB")
     private String dob;
 
-    @Column(name = "email", length = 60)
+    @Column(name = "Email", length = 60)
     private String email;
 
-    @Column(name = "title", length = 50)
+    @Column(name = "Title", length = 50)
     private String title;
 
     //@ManyToMany(mappedBy = "TeacherCourse")
     //private List<Trainer> trainers = new ArrayList<>();
     @ManyToMany
     @JoinTable(
-            name = "teaching",
-            joinColumns = @JoinColumn(name = "trainer_id"),
-            inverseJoinColumns = @JoinColumn(name = "course_id")
+            name = "Teaching",
+            joinColumns = @JoinColumn(name = "Trainer ID"),
+            inverseJoinColumns = @JoinColumn(name = "Course Id")
     )
     private List<Course> TeacherCourse = new ArrayList<>();
 
@@ -46,12 +46,12 @@ public class Trainer {
     public Trainer() {
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getID() {
+        return trainerID;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setID(Integer id) {
+        this.trainerID = id;
     }
 
     public String getTrainerName() {
@@ -62,11 +62,11 @@ public class Trainer {
         this.trainerName = trainerName;
     }
 
-    public String getDob() {
+    public String getDoB() {
         return dob;
     }
 
-    public void setDob(String dob) {
+    public void setDoB(String dob) {
         this.dob = dob;
     }
 
