@@ -3,7 +3,9 @@ package com.sparta.apidev.entities;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "trainers")
@@ -26,15 +28,13 @@ public class Trainer {
     @Column(name = "title", length = 50)
     private String title;
 
-    //@ManyToMany(mappedBy = "TeacherCourse")
-    //private List<Trainer> trainers = new ArrayList<>();
     @ManyToMany
     @JoinTable(
             name = "teaching",
             joinColumns = @JoinColumn(name = "trainer_id"),
             inverseJoinColumns = @JoinColumn(name = "course_id")
     )
-    private List<Course> TeacherCourse = new ArrayList<>();
+    private Set<Course> TeacherCourse = new HashSet<>();
 
     public Trainer(String trainerName, String dob, String email, String title) {
         this.trainerName = trainerName;
@@ -86,7 +86,7 @@ public class Trainer {
         this.title = title;
     }
 
-    public List<Course> getCourses() {
+    public Set<Course> getCourses() {
         return this.TeacherCourse;
     }
 }
