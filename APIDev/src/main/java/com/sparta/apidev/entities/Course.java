@@ -16,6 +16,12 @@ public class Course {
     @Column(name = "Course ID", nullable = false)
     private Integer id;
 
+    @Column(name = "course_name", length = 50)
+    private String courseName;
+
+    @Column(name = "description", length = 255)
+    private String description;
+
 
     @ManyToMany(mappedBy = "traineeCourse")
     private Set<Trainee> trainees = new HashSet<>();
