@@ -47,7 +47,7 @@ public class TraineeService {
         return false;
     }
 
-    public TraineeDTO updateCustomer(int id, TraineeDTO dto) {
+    public TraineeDTO updateTrainee(int id, TraineeDTO dto) {
 
         Trainee trainee = traineeRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Trainee not found"));
