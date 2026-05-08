@@ -28,7 +28,12 @@ public class Course {
     @ManyToMany(mappedBy = "courses")
     private List<Trainer> trainers = new ArrayList<>();
 
-    public Course() {}
+    public Course(String courseName, String description) {
+        this.courseName = courseName;
+        this.description = description;
+    }
+
+    public Course(){}
 
     // ID
     public Integer getId() {
