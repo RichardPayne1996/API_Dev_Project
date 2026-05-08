@@ -13,27 +13,51 @@ public class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Course ID", nullable = false)
+    @Column(name = "course_id", nullable = false)
     private Integer id;
 
+    @Column(name = "course_name", length = 50)
+    private String courseName;
 
-    @ManyToMany(mappedBy = "traineeCourse")
+    @Column(name = "description", length = 255)
+    private String description;
+
+    @ManyToMany(mappedBy = "courses")
     private Set<Trainee> trainees = new HashSet<>();
 
-    @ManyToMany(mappedBy = "TeacherCourse")
+    @ManyToMany(mappedBy = "courses")
     private List<Trainer> trainers = new ArrayList<>();
 
-    public Course() {
-    }
+    public Course() {}
 
-    public Integer getID() {
+    // ID
+    public Integer getId() {
         return id;
     }
 
-    public void setID(Integer id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
+    // courseName
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    // description
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    // trainees
     public Set<Trainee> getTrainees() {
         return trainees;
     }
@@ -42,6 +66,7 @@ public class Course {
         this.trainees = trainees;
     }
 
+    // trainers
     public List<Trainer> getTrainers() {
         return trainers;
     }
@@ -50,4 +75,3 @@ public class Course {
         this.trainers = trainers;
     }
 }
-
