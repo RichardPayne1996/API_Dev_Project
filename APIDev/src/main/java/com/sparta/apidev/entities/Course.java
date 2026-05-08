@@ -28,7 +28,12 @@ public class Course {
     @ManyToMany(mappedBy = "TeacherCourse")
     private List<Trainer> trainers = new ArrayList<>();
 
-    public Course() {}
+    public Course(String courseName, String description) {
+        this.courseName = courseName;
+        this.description = description;
+    }
+
+    public Course(){}
 
     // ID
     public Integer getId() {
@@ -73,5 +78,21 @@ public class Course {
 
     public void setTrainers(List<Trainer> trainers) {
         this.trainers = trainers;
+    }
+
+    public void addTrainee(Trainee trainee){
+        trainees.add(trainee);
+    }
+
+    public void deleteTrainee(Trainee trainee){
+        trainees.remove(trainee);
+    }
+
+    public void addTrainer(Trainer trainer){
+        trainers.add(trainer);
+    }
+
+    public void deleteTrainer(Trainer trainer){
+        trainers.remove(trainer);
     }
 }
