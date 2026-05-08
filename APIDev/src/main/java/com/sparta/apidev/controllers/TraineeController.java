@@ -3,6 +3,7 @@ package com.sparta.apidev.controllers;
 import com.sparta.apidev.dtos.TraineeDTO;
 import com.sparta.apidev.dtos.TraineeMapper;
 import com.sparta.apidev.services.TraineeService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -84,6 +85,16 @@ public class TraineeController {
         }
         TraineeDTO updatedTrainee = traineeService.updateTrainee(id, trainee);
         return ResponseEntity.ok().body(updatedTrainee);
+    }
+
+    @Operation(summary="Delete a student", description="Deletes a student from the database")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteTrainee(@PathVariable int id) {
+        boolean isDeleted = traineeService.deleteTrainee(id);
+        if (isDeleted) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 
 
