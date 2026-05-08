@@ -15,7 +15,7 @@ public class CourseController {
     public CourseController(CourseService courseService) {
         this.courseService = courseService;
     }
-
+//mapping for coursecontroller
     @GetMapping
     public List<CourseDTO> getAllCourses() {
         return courseService.getAllCourses();
