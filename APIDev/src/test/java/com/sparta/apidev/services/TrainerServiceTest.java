@@ -201,28 +201,28 @@ class TrainerServiceTest {
                 .thenReturn(dto);
 
         // Act
-//        TrainerDTO result = sut.updateTrainer(trainer);
-//
-//        // Assert
-//        Assertions.assertNotNull(result);
-//        Assertions.assertEquals(1, result.getTrainerId());
-//    }
-//
-//    @Test
-//    @DisplayName("Update Trainer - Not Found")
-//    void updateTrainerFailureTest() {
-//
-//        // Arrange
-//        Trainer trainer = new Trainer();
-//        trainer.setID(1);
-//
-//        Mockito.when(mockRepository.existsById(1))
-//                .thenReturn(false);
-//
-//        // Act + Assert
-//        Assertions.assertThrows(
-//                IllegalArgumentException.class,
-//                () -> sut.updateTrainer(trainer)
-//        );
+        TrainerDTO result = sut.updateTrainer(trainer);
+
+        // Assert
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(1, result.getTrainerId());
+    }
+
+    @Test
+    @DisplayName("Update Trainer - Not Found")
+    void updateTrainerFailureTest() {
+
+        // Arrange
+        Trainer trainer = new Trainer();
+        trainer.setID(1);
+
+        Mockito.when(mockRepository.existsById(1))
+                .thenReturn(false);
+
+        // Act + Assert
+        Assertions.assertThrows(
+                IllegalArgumentException.class,
+                () -> sut.updateTrainer(trainer)
+        );
     }
 }
