@@ -4,7 +4,7 @@ import com.sparta.apidev.entities.Course;
 import com.sparta.apidev.entities.Trainee;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring")
+@Mapper
 public interface TraineeMapper {
     TraineeDTO toDTO(Trainee trainee);
 
