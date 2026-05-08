@@ -2,6 +2,7 @@ package com.sparta.apidev.services;
 
 import com.sparta.apidev.dtos.TrainerDTO;
 import com.sparta.apidev.dtos.TrainerMapper;
+import com.sparta.apidev.entities.Trainee;
 import com.sparta.apidev.repositories.TrainerRepository;
 import com.sparta.apidev.entities.Trainer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,12 +51,24 @@ public class TrainerService {
         return false;
     }
 
-    public TrainerDTO updateTrainer(Trainer trainer){
-        if (trainerRepository.existsById(trainer.getID())){
-            return trainerMapper.toDTO(trainerRepository.save(trainer));
+    public TrainerDTO updateTrainer(int iD, TrainerDTO dto){
+        if (trainerRepository.existsById(dto.getTrainerId())){
+            Trainer trainer = trainerRepository.findById(iD)
+                    .orElseThrow(() -> new RuntimeException("Trainee not found"));
+
+            trainer.setTrainerName(dto.getTrainerName());
+            trainer.setDoB(dto.getTrainerDOB());
+            trainer.setEmail(dto.getTrainerEmail());
+            trainer.setID(dto.getTrainerId());
+            trainer.setTitle(dto.getTrainerTitle());
+
+            Trainer updated = trainerRepository.save(trainer);
+
+            return trainerMapper.toDTO(updated);
         }else {
-            throw new IllegalArgumentException("Trainer with ID " + trainer.getID() + " does not exist.");
+            throw new IllegalArgumentException("Trainer with ID " + dto.getTrainerId() + " does not exist.");
         }
+
     }
 
 
