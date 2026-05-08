@@ -36,7 +36,7 @@ public class TrainerController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedTrainer);
     }
     // update trainer
-    @PutMapping("{/id}")
+    @PutMapping("/{id}")
     public ResponseEntity<TrainerDTO> updateTrainer(
             @PathVariable Integer id,
             @RequestBody TrainerDTO trainerDTO) {
@@ -45,7 +45,7 @@ public class TrainerController {
         return ResponseEntity.ok(updateTrainer);
     }
     // delete trainer
-    @DeleteMapping("{/id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTrainer(@PathVariable int id) {
         boolean deleteTrainer = trainerService.deleteTrainer(id);
         if (deleteTrainer) {
