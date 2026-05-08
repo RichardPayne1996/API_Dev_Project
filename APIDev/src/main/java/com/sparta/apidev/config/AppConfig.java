@@ -8,11 +8,13 @@ import com.sparta.apidev.repositories.TraineeRepository;
 import com.sparta.apidev.repositories.TrainerRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AppConfig {
 
+    @Bean
     @Transactional
     public CommandLineRunner loadData(TrainerRepository trRepo, TraineeRepository teRepo, CourseRepository cRepo){
         return args -> {
