@@ -90,6 +90,7 @@ public class TraineeController {
     @Operation(summary="Delete a student", description="Deletes a student from the database")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTrainee(@PathVariable int id) {
+        //Comment to see if this lets me push again
         boolean isDeleted = traineeService.deleteTrainee(id);
         if (isDeleted) {
             return ResponseEntity.noContent().build();
