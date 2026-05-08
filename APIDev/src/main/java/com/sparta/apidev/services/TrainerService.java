@@ -10,10 +10,12 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
+@Service
 public class TrainerService {
     private final TrainerRepository trainerRepository;
     private final TrainerMapper trainerMapper;
 
+    @Autowired
     public TrainerService(TrainerRepository trainerRepository, TrainerMapper trainerMapper){
         if (trainerRepository == null || trainerMapper == null) {
             throw new IllegalArgumentException("Trainer repository cannot be null");
