@@ -22,10 +22,10 @@ public class Course {
     @Column(name = "description", length = 255)
     private String description;
 
-    @ManyToMany(mappedBy = "courses")
+    @ManyToMany(mappedBy = "traineeCourse")
     private Set<Trainee> trainees = new HashSet<>();
 
-    @ManyToMany(mappedBy = "courses")
+    @ManyToMany(mappedBy = "TeacherCourse")
     private List<Trainer> trainers = new ArrayList<>();
 
     public Course() {}
