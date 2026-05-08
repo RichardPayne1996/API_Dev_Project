@@ -1,24 +1,24 @@
 package com.sparta.apidev.dtos;
 
 public class CourseDTO {
-    private Integer id;
+    private Integer traineeId;
     private String courseName;
     private String description;
 
     public CourseDTO() {}
 
     public CourseDTO(Integer id, String courseName, String description) {
-        this.id = id;
+        this.traineeId = id;
         this.courseName = courseName;
         this.description = description;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getTraineeId() {
+        return traineeId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setTraineeId(Integer id) {
+        this.traineeId = id;
     }
 
     public String getCourseName() {

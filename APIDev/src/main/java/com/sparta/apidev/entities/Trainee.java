@@ -2,6 +2,7 @@ package com.sparta.apidev.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,38 +12,46 @@ public class Trainee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "traineeID", nullable = false)
-    private Integer traineeID;
+    @Column(name = "trainee_id", nullable = false)
+    private int traineeId;
 
-    @Column(name = "Trainee Name", length = 50)
+    @Column(name = "trainee_name", length = 50)
     private String traineeName;
 
-    @Column(name = "DoB", length = 10)
-    private String dob;
+    @Column(name = "trainee_dob", length = 10)
+    private LocalDate traineeDob;
 
-    @Column(name = "Email", length = 40)
-    private String email;
+    @Column(name = "trainee_email", length = 40)
+    private String traineeEmail;
 
-    @Column(name = "Title", length = 10)
-    private String title;
+    @Column(name = "trainee_title", length = 10)
+    private String traineeTitle;
 
     @ManyToMany
     @JoinTable(
             name = "StudentCourse",
-            joinColumns = @JoinColumn(name = "Student ID"),
-            inverseJoinColumns = @JoinColumn(name = "Course ID")
+            joinColumns = @JoinColumn(name = "StudentID"),
+            inverseJoinColumns = @JoinColumn(name = "CourseID")
     )
     private Set<Course> traineeCourse = new HashSet<>();
 
-    public Trainee(String name, String dob, String email, String title) {
+    public Trainee(String name, LocalDate dob, String email, String title) {
         this.traineeName = name;
-        this.dob = dob;
-        this.email = email;
-        this.title = title;
+        this.traineeDob = dob;
+        this.traineeEmail = email;
+        this.traineeTitle = title;
     }
 
     public Trainee() {
         
+    }
+
+    public int getTraineeId() {
+        return this.traineeId;
+    }
+
+    public void setTraineeId(int id) {
+        this.traineeId = id;
     }
 
     public String getTraineeName() {
@@ -53,28 +62,28 @@ public class Trainee {
         this.traineeName = traineeName;
     }
 
-    public String getDoB() {
-        return dob;
+    public LocalDate getTraineeDob() {
+        return traineeDob;
     }
 
-    public void setDoB(String dob) {
-        this.dob = dob;
+    public void setTraineeDob(LocalDate dob) {
+        this.traineeDob = dob;
     }
 
-    public String getEmail() {
-        return email;
+    public String getTraineeEmail() {
+        return traineeEmail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setTraineeEmail(String email) {
+        this.traineeEmail = email;
     }
 
-    public String getTitle() {
-        return title;
+    public String getTraineeTitle() {
+        return traineeTitle;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTraineeTitle(String title) {
+        this.traineeTitle = title;
     }
 
     public void addCourse(Course course) {
@@ -89,12 +98,5 @@ public class Trainee {
         return traineeCourse;
     }
 
-    public int getID() {
-        return this.traineeID;
-    }
-
-    public void setID(int id) {
-        this.traineeID = id;
-    }
 
 }

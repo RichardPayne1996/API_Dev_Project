@@ -2,6 +2,8 @@ package com.sparta.apidev.controllers;
 
 import com.sparta.apidev.dtos.TraineeDTO;
 import com.sparta.apidev.dtos.TraineeMapper;
+import com.sparta.apidev.entities.Trainee;
+import com.sparta.apidev.repositories.TraineeRepository;
 import com.sparta.apidev.services.TraineeService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +17,12 @@ public class TraineeController {
 
     private final TraineeService traineeService;
     private final TraineeMapper traineeMapper;
+    private final TraineeRepository traineeRepository;
 
-    public TraineeController(TraineeService traineeService, TraineeMapper traineeMapper) {
+    public TraineeController(TraineeService traineeService, TraineeMapper traineeMapper, TraineeRepository traineeRepository) {
         this.traineeService = traineeService;
         this.traineeMapper = traineeMapper;
+        this.traineeRepository = traineeRepository;
     }
 
     @Operation(summary = "Get all students", description = "Provides a list of all trainees")
@@ -44,7 +48,7 @@ public class TraineeController {
         if (traineeService.getTraineeById(traineeDTO.getTraineeId()) != null) {
             throw new RuntimeException("Trainee with id " + traineeDTO.getTraineeId() + " already exists");
         }
-        if (traineeDTO.getTraineeName() == null || traineeDTO.getTraineeEmail() == null || traineeDTO.getTraineeDOB() == null || traineeDTO.getTraineeTitle() == null) {
+        if (traineeDTO.getTraineeName() == null || traineeDTO.getTraineeEmail() == null || traineeDTO.getTraineeDob() == null || traineeDTO.getTraineeTitle() == null) {
             String exception = "Incomplete trainee information, missing the following data:";
             if (traineeDTO.getTraineeName() == null) {
                 exception += " Trainee Name,";
@@ -52,7 +56,7 @@ public class TraineeController {
             if (traineeDTO.getTraineeEmail() == null) {
                 exception += " Trainee Email,";
             }
-            if (traineeDTO.getTraineeDOB() == null) {
+            if (traineeDTO.getTraineeDob() == null) {
                 exception += " Trainee DOB,";
             }
             if (traineeDTO.getTraineeTitle() == null) {
@@ -60,7 +64,9 @@ public class TraineeController {
             }
             throw new RuntimeException(exception.replace(",$", "."));
         }
-        return ResponseEntity.ok().body(traineeDTO);
+        Trainee trainee = traineeMapper.toEntity(traineeDTO);
+        Trainee saved = traineeRepository.save(trainee);
+        return ResponseEntity.ok(traineeMapper.toDTO(saved));
     }
 
     @Operation(summary = "Update a student", description = "updates a student with new information")
@@ -77,8 +83,8 @@ public class TraineeController {
         if (trainee.getTraineeEmail() == null) {
             trainee.setTraineeEmail(oldTrainee.getTraineeEmail());
         }
-        if (trainee.getTraineeDOB() == null) {
-            trainee.setTraineeDOB(oldTrainee.getTraineeDOB());
+        if (trainee.getTraineeDob() == null) {
+            trainee.setTraineeDob(oldTrainee.getTraineeDob());
         }
         if (trainee.getTraineeName() == null) {
             trainee.setTraineeName(oldTrainee.getTraineeName());

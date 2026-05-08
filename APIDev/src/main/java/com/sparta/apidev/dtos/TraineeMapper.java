@@ -10,3 +10,5 @@ public interface TraineeMapper {
 
     Trainee toEntity(TraineeDTO traineeDTO);
 }
+
+

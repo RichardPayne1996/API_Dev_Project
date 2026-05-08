@@ -11,6 +11,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.time.LocalDate;
+
 @Configuration
 public class AppConfig {
 
@@ -29,11 +31,11 @@ public class AppConfig {
         }
 
         if (teRepo.count() == 0){
-            var trainee1 = new Trainee("Ezra", "22/06/2003", "eduncan@spartaglobal.com", "Mr");
-            var trainee2 = new Trainee("Richard", "24/07/1996", "rpayne@spartaglobal.com", "Mr");
-            var trainee3 = new Trainee("Jacob", "26/09/2001", "jreece@spartaglobal.com", "Mr");
-            var trainee4 = new Trainee("Mohammed", "11/09/1998", "mnasseri@spartaglobal.com", "Mr");
-            var trainee5 = new Trainee("Pascal", "10/05/2000", "ebibby@spartaglobal.com", "Mr");
+            var trainee1 = new Trainee("Ezra", LocalDate.of(2003, 6, 22), "eduncan@spartaglobal.com", "Mr");
+            var trainee2 = new Trainee("Richard", LocalDate.of(1996, 7, 24), "rpayne@spartaglobal.com", "Mr");
+            var trainee3 = new Trainee("Jacob", LocalDate.of(2001, 9, 26), "jreece@spartaglobal.com", "Mr");
+            var trainee4 = new Trainee("Mohammed", LocalDate.of(1998, 9, 11), "mnasseri@spartaglobal.com", "Mr");
+            var trainee5 = new Trainee("Pascal", LocalDate.of(2000, 5, 10), "ebibby@spartaglobal.com", "Mr");
 
             teRepo.save(trainee1);
             teRepo.save(trainee2);

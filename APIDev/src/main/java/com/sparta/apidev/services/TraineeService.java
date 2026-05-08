@@ -53,10 +53,9 @@ public class TraineeService {
                 .orElseThrow(() -> new RuntimeException("Trainee not found"));
 
         trainee.setTraineeName(dto.getTraineeName());
-        trainee.setDoB(dto.getTraineeDOB());
-        trainee.setEmail(dto.getTraineeEmail());
-        trainee.setID(dto.getTraineeId());
-        trainee.setTitle(dto.getTraineeTitle());
+        trainee.setTraineeDob(dto.getTraineeDob());
+        trainee.setTraineeEmail(dto.getTraineeEmail());
+        trainee.setTraineeTitle(dto.getTraineeTitle());
 
         Trainee updated = traineeRepository.save(trainee);
 
