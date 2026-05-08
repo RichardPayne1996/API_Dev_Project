@@ -56,3 +56,24 @@ src/main/java/com/sparta/academy
 ```
 
 ## Features
+**Trainers**
+- Create trainer
+- View trainers
+- Update trainer
+- Delete trainer
+- View assigned courses
+  
+**Trainees**
+- Create trainee
+- View trainees
+- Update trainee
+- Delete trainee
+  
+**Courses**
+- Create course
+- View courses
+- Update course
+- Delete course
+- Enrol trainees
+- Remove trainees from courses
+
