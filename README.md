@@ -77,3 +77,21 @@ src/main/java/com/sparta/academy
 - Enrol trainees
 - Remove trainees from courses
 
+## API Documentation
+**Swagger UI:**
+(http://localhost:8080/swagger-ui.html)
+
+## API Documentation
+**OpenAPI JSON:**
+(http://localhost:8080/v3/api-docs)
+
+## Database Design
+**Entities**
+- Trainer
+- Trainee
+- Course
+  
+**Relationships**
+
+- One Trainer → Many Courses
+- Many Trainees ↔ Many Courses
