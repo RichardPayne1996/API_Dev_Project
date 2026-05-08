@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
 public class TrainerService {
     private final TrainerRepository trainerRepository;
 
-    @Autowired
+
     public TrainerService(TrainerRepository trainerRepository){
         if (trainerRepository == null) {
             throw new IllegalArgumentException("Trainer repository cannot be null");
