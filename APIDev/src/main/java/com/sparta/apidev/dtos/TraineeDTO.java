@@ -10,7 +10,6 @@ public class TraineeDTO {
     private String traineeTitle;
 
     public TraineeDTO(int traineeId, String traineeName, String traineeEmail, LocalDate traineeDOB, String traineeTitle) {
-        this.traineeId = traineeId;
         this.traineeName = traineeName;
         this.traineeEmail = traineeEmail;
         this.traineeDob = traineeDOB;

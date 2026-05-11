@@ -34,7 +34,7 @@ public class TraineeController {
     }
 
     @Operation(summary = "Get students by Id", description = "If a correct id is entered, returns a trainee")
-    @GetMapping(value = "/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<TraineeDTO> getTraineeById(@RequestParam(name = "id") int id) {
         var trainee = traineeService.getTraineeById(id);
         if (trainee != null) {
