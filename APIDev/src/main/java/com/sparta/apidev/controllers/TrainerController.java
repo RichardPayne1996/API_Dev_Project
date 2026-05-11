@@ -1,8 +1,13 @@
 package com.sparta.apidev.controllers;
 
 import com.sparta.apidev.dtos.TraineeDTO;
+import com.sparta.apidev.dtos.TraineeMapper;
 import com.sparta.apidev.dtos.TrainerDTO;
+import com.sparta.apidev.dtos.TrainerMapper;
+import com.sparta.apidev.entities.Trainee;
 import com.sparta.apidev.entities.Trainer;
+import com.sparta.apidev.repositories.TraineeRepository;
+import com.sparta.apidev.repositories.TrainerRepository;
 import com.sparta.apidev.services.TrainerService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
@@ -16,9 +21,13 @@ import java.util.List;
 public class TrainerController {
 
     private TrainerService trainerService;
+    private final TrainerMapper trainerMapper;
+    private final TrainerRepository trainerRepository;
 
-    public TrainerController(TrainerService trainerService) {
+    public TrainerController(TrainerService trainerService, TrainerMapper trainerMapper, TrainerRepository trainerRepository) {
         this.trainerService = trainerService;
+        this.trainerMapper = trainerMapper;
+        this.trainerRepository = trainerRepository;
     }
 
 
@@ -37,9 +46,29 @@ public class TrainerController {
     }
     // create trainer
     @PostMapping
-    public ResponseEntity<TrainerDTO> createTrainer(@RequestBody Trainer trainer) {
-        TrainerDTO savedTrainer = trainerService.saveTrainer(trainer);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedTrainer);
+    public ResponseEntity<TrainerDTO> createTrainer(@RequestBody TrainerDTO trainerDTO) {
+        if (trainerService.getTrainerByID(trainerDTO.getTrainerId()) != null) {
+            throw new RuntimeException("Trainer with id " + trainerDTO.getTrainerId() + " already exists");
+        }
+        if (trainerDTO.getTrainerName() == null || trainerDTO.getTrainerEmail() == null || trainerDTO.getTrainerDOB() == null || trainerDTO.getTrainerTitle() == null) {
+            String exception = "Incomplete trainer information, missing the following data:";
+            if (trainerDTO.getTrainerName() == null) {
+                exception += " Trainer Name,";
+            }
+            if (trainerDTO.getTrainerEmail() == null) {
+                exception += " Trainer Email,";
+            }
+            if (trainerDTO.getTrainerDOB() == null) {
+                exception += " Trainer DOB,";
+            }
+            if (trainerDTO.getTrainerTitle() == null) {
+                exception += " Trainer Title,";
+            }
+            throw new RuntimeException(exception.replace(",$", "."));
+        }
+        Trainer trainer = trainerMapper.toEntity(trainerDTO);
+        Trainer saved = trainerRepository.save(trainer);
+        return ResponseEntity.ok(trainerMapper.toDTO(saved));
     }
     // update trainer
     @PutMapping("/{id}")
