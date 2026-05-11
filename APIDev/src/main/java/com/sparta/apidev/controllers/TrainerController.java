@@ -21,9 +21,6 @@ public class TrainerController {
         this.trainerService = trainerService;
     }
 
-    public ResponseEntity<List<TrainerDTO>> getAllTrainers() {
-        return ResponseEntity.ok(trainerService.getAllTrainers());
-    }
 
     @GetMapping("/{id}")
     public ResponseEntity<TrainerDTO> getTrainer(@PathVariable Integer id) {
@@ -34,7 +31,7 @@ public class TrainerController {
 
     @Operation(summary = "Get all teachers", description = "Provides a list of all teachers")
     @GetMapping(value = "/")
-    public ResponseEntity<List<TrainerDTO>> getAllTrainees() {
+    public ResponseEntity<List<TrainerDTO>> getAllTrainers() {
         var trainers = trainerService.getAllTrainers();
         return ResponseEntity.ok().body(trainers);
     }
