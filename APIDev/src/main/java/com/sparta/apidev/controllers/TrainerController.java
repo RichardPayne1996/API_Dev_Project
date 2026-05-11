@@ -1,8 +1,10 @@
 package com.sparta.apidev.controllers;
 
+import com.sparta.apidev.dtos.TraineeDTO;
 import com.sparta.apidev.dtos.TrainerDTO;
 import com.sparta.apidev.entities.Trainer;
 import com.sparta.apidev.services.TrainerService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,15 +21,19 @@ public class TrainerController {
         this.trainerService = trainerService;
     }
 
-    public ResponseEntity<List<TrainerDTO>> getAllTrainers() {
-        return ResponseEntity.ok(trainerService.getAllTrainers());
-    }
 
     @GetMapping("/{id}")
     public ResponseEntity<TrainerDTO> getTrainer(@PathVariable Integer id) {
         return ResponseEntity.ok(
                 trainerService.getTrainerByID(id)
         );
+    }
+
+    @Operation(summary = "Get all teachers", description = "Provides a list of all teachers")
+    @GetMapping(value = "/")
+    public ResponseEntity<List<TrainerDTO>> getAllTrainers() {
+        var trainers = trainerService.getAllTrainers();
+        return ResponseEntity.ok().body(trainers);
     }
     // create trainer
     @PostMapping
