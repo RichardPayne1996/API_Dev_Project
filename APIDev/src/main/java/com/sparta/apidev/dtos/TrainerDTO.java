@@ -3,7 +3,6 @@ package com.sparta.apidev.dtos;
 import java.time.LocalDate;
 
 public class TrainerDTO {
-
     private int trainerId;
     private String trainerName;
     private String trainerEmail;
@@ -17,7 +16,6 @@ public class TrainerDTO {
         this.trainerDOB = trainerDOB;
         this.trainerTitle = trainerTitle;
     }
-
     public TrainerDTO(){}
     
     public int getTrainerId() {
