@@ -6,6 +6,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import com.sparta.apidev.dtos.CourseDTO;
+import com.sparta.apidev.services.CourseService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 @RestController
 @RequestMapping("/courses")
 public class CourseController {
@@ -15,36 +23,64 @@ public class CourseController {
     public CourseController(CourseService courseService) {
         this.courseService = courseService;
     }
-//mapping for coursecontroller
+
+    // GET all courses
     @GetMapping
-    public List<CourseDTO> getAllCourses() {
-        return courseService.getAllCourses();
+    public ResponseEntity<List<CourseDTO>> getAllCourses() {
+
+        List<CourseDTO> courses = courseService.getAllCourses();
+
+        return ResponseEntity.ok(courses);
     }
 
+    // GET course by ID
     @GetMapping("/{id}")
-    public CourseDTO getCourseById(@PathVariable int id) {
-        return courseService.getCourseById(id);
+    public ResponseEntity<CourseDTO> getCourseById(@PathVariable int id) {
+
+        CourseDTO course = courseService.getCourseById(id);
+
+        if (course == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(course);
     }
 
+    // CREATE new course
     @PostMapping
-    public CourseDTO createCourse(@RequestBody CourseDTO courseDTO) {
-        return courseService.saveCourse(courseDTO);
+    public ResponseEntity<CourseDTO> createCourse(@RequestBody CourseDTO courseDTO) {
+
+        CourseDTO createdCourse = courseService.saveCourse(courseDTO);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdCourse);
     }
 
+    // UPDATE existing course
     @PutMapping("/{id}")
-    public CourseDTO updateCourse(@PathVariable int id,
-                                  @RequestBody CourseDTO courseDTO) {
-        return courseService.updateCourse(id, courseDTO);
+    public ResponseEntity<CourseDTO> updateCourse(
+            @PathVariable int id,
+            @RequestBody CourseDTO courseDTO
+    ) {
+
+        CourseDTO updatedCourse = courseService.updateCourse(id, courseDTO);
+
+        if (updatedCourse == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(updatedCourse);
     }
 
+    // DELETE course
     @DeleteMapping("/{id}")
-    public String deleteCourse(@PathVariable int id) {
+    public ResponseEntity<String> deleteCourse(@PathVariable int id) {
+
         boolean deleted = courseService.deleteCourse(id);
 
         if (deleted) {
-            return "Course deleted successfully";
-        } else {
-            return "Course not found";
+            return ResponseEntity.ok("Course deleted successfully");
         }
+
+        return ResponseEntity.notFound().build();
     }
 }
