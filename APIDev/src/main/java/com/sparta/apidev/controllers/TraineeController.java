@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -45,9 +46,6 @@ public class TraineeController {
     @Operation(summary = "Add a new student", description = "If a student has all the correct information, adds them")
     @PostMapping
     public ResponseEntity<TraineeDTO> createTrainee(@RequestBody TraineeDTO traineeDTO) {
-        if (traineeService.getTraineeById(traineeDTO.getTraineeId()) != null) {
-            throw new RuntimeException("Trainee with id " + traineeDTO.getTraineeId() + " already exists");
-        }
         if (traineeDTO.getTraineeName() == null || traineeDTO.getTraineeEmail() == null || traineeDTO.getTraineeDob() == null || traineeDTO.getTraineeTitle() == null) {
             String exception = "Incomplete trainee information, missing the following data:";
             if (traineeDTO.getTraineeName() == null) {
@@ -62,7 +60,7 @@ public class TraineeController {
             if (traineeDTO.getTraineeTitle() == null) {
                 exception += " Trainee Title,";
             }
-            throw new RuntimeException(exception.replace(",$", "."));
+            throw new RuntimeException(exception.replaceAll(",$", "."));
         }
         Trainee trainee = traineeMapper.toEntity(traineeDTO);
         Trainee saved = traineeRepository.save(trainee);
@@ -77,16 +75,16 @@ public class TraineeController {
         if (oldTrainee == null) {
             return ResponseEntity.notFound().build();
         }
-        if (trainee.getTraineeTitle() == null) {
+        if (trainee.getTraineeTitle() == null ||  trainee.getTraineeTitle().equals("string")) {
             trainee.setTraineeTitle(oldTrainee.getTraineeTitle());
         }
-        if (trainee.getTraineeEmail() == null) {
+        if (trainee.getTraineeEmail() == null || trainee.getTraineeEmail().equals("string")) {
             trainee.setTraineeEmail(oldTrainee.getTraineeEmail());
         }
-        if (trainee.getTraineeDob() == null) {
+        if (trainee.getTraineeDob() == null || trainee.getTraineeDob().equals(LocalDate.now())) {
             trainee.setTraineeDob(oldTrainee.getTraineeDob());
         }
-        if (trainee.getTraineeName() == null) {
+        if (trainee.getTraineeName() == null || trainee.getTraineeName().equals("string")) {
             trainee.setTraineeName(oldTrainee.getTraineeName());
         }
         TraineeDTO updatedTrainee = traineeService.updateTrainee(id, trainee);
