@@ -12,14 +12,14 @@ public class Trainee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "traineeId", nullable = false)
-    private int traineeId;
+    @Column(name = "TraineeID", nullable = false)
+    private int traineeID;
 
-    @Column(name = "traineeName", length = 50)
+    @Column(name = "TraineeName", length = 50)
     private String traineeName;
 
-    @Column(name = "traineeDob", length = 10)
-    private LocalDate traineeDob;
+    @Column(name = "traineeDoB", length = 10)
+    private LocalDate traineeDoB;
 
     @Column(name = "traineeEmail", length = 40)
     private String traineeEmail;
@@ -37,7 +37,7 @@ public class Trainee {
 
     public Trainee(String name, LocalDate dob, String email, String title) {
         this.traineeName = name;
-        this.traineeDob = dob;
+        this.traineeDoB = dob;
         this.traineeEmail = email;
         this.traineeTitle = title;
     }
@@ -47,11 +47,11 @@ public class Trainee {
     }
 
     public int getTraineeId() {
-        return this.traineeId;
+        return this.traineeID;
     }
 
     public void setTraineeId(int id) {
-        this.traineeId = id;
+        this.traineeID = id;
     }
 
     public String getTraineeName() {
@@ -63,11 +63,11 @@ public class Trainee {
     }
 
     public LocalDate getTraineeDob() {
-        return traineeDob;
+        return traineeDoB;
     }
 
     public void setTraineeDob(LocalDate dob) {
-        this.traineeDob = dob;
+        this.traineeDoB = dob;
     }
 
     public String getTraineeEmail() {
