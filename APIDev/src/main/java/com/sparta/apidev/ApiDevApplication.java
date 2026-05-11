@@ -1,5 +1,6 @@
 package com.sparta.apidev;
 
+import com.sparta.apidev.entities.Trainee;
 import com.sparta.apidev.repositories.CourseRepository;
 import com.sparta.apidev.repositories.TraineeRepository;
 import com.sparta.apidev.repositories.TrainerRepository;
