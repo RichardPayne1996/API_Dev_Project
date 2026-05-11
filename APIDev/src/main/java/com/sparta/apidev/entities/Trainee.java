@@ -12,19 +12,19 @@ public class Trainee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "trainee_id", nullable = false)
+    @Column(name = "traineeId", nullable = false)
     private int traineeId;
 
-    @Column(name = "trainee_name", length = 50)
+    @Column(name = "traineeName", length = 50)
     private String traineeName;
 
-    @Column(name = "trainee_dob", length = 10)
+    @Column(name = "traineeDob", length = 10)
     private LocalDate traineeDob;
 
-    @Column(name = "trainee_email", length = 40)
+    @Column(name = "traineeEmail", length = 40)
     private String traineeEmail;
 
-    @Column(name = "trainee_title", length = 10)
+    @Column(name = "traineeTitle", length = 10)
     private String traineeTitle;
 
     @ManyToMany
