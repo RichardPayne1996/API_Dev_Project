@@ -37,10 +37,10 @@ class TraineeServiceTest {
 
         // Arrange
         Trainee trainee1 = new Trainee();
-        trainee1.setID(1);
+        trainee1.setTraineeId(1);
 
         Trainee trainee2 = new Trainee();
-        trainee2.setID(2);
+        trainee2.setTraineeId(2);
 
         List<Trainee> trainees = List.of(trainee1, trainee2);
 
@@ -74,7 +74,7 @@ class TraineeServiceTest {
 
         // Arrange
         Trainee trainee = new Trainee();
-        trainee.setID(1);
+        trainee.setTraineeId(1);
 
         TraineeDTO dto = new TraineeDTO();
         dto.setTraineeId(1);
@@ -114,7 +114,7 @@ class TraineeServiceTest {
 
         // Arrange
         Trainee trainee = new Trainee();
-        trainee.setID(1);
+        trainee.setTraineeId(1);
 
         TraineeDTO dto = new TraineeDTO();
         dto.setTraineeId(1);
@@ -179,7 +179,7 @@ class TraineeServiceTest {
         dto.setTraineeName("John");
 
         Trainee trainee = new Trainee();
-        trainee.setID(1);
+        trainee.setTraineeId(1);
 
         Mockito.when(mockRepository.findById(1))
                 .thenReturn(Optional.of(trainee));
