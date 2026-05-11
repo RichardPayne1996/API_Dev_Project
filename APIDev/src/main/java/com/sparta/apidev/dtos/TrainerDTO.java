@@ -1,13 +1,25 @@
 package com.sparta.apidev.dtos;
 
+import java.time.LocalDate;
+
 public class TrainerDTO {
 
     private int trainerId;
     private String trainerName;
     private String trainerEmail;
-    private String trainerDOB;
+    private LocalDate trainerDOB;
     private String trainerTitle;
 
+    public TrainerDTO(int trainerId, String trainerName, String trainerEmail, LocalDate trainerDOB, String trainerTitle) {
+        this.trainerId = trainerId;
+        this.trainerName = trainerName;
+        this.trainerEmail = trainerEmail;
+        this.trainerDOB = trainerDOB;
+        this.trainerTitle = trainerTitle;
+    }
+
+    public TrainerDTO(){}
+    
     public int getTrainerId() {
         return trainerId;
     }
@@ -32,11 +44,11 @@ public class TrainerDTO {
         this.trainerEmail = trainerEmail;
     }
 
-    public String getTrainerDOB() {
+    public LocalDate getTrainerDOB() {
         return trainerDOB;
     }
 
-    public void setTrainerDOB(String trainerDOB) {
+    public void setTrainerDOB(LocalDate trainerDOB) {
         this.trainerDOB = trainerDOB;
     }
 

@@ -2,6 +2,7 @@ package com.sparta.apidev.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -20,7 +21,7 @@ public class Trainer {
     private String trainerName;
 
     @Column(name = "TrainerDoB")
-    private String trainerDoB;
+    private LocalDate trainerDoB;
 
     @Column(name = "Email", length = 60)
     private String trainerEmail;
@@ -36,7 +37,7 @@ public class Trainer {
     )
     private Set<Course> TeacherCourse = new HashSet<>();
 
-    public Trainer(String trainerName, String dob, String email, String title) {
+    public Trainer(String trainerName, LocalDate dob, String email, String title) {
         this.trainerName = trainerName;
         this.trainerDoB = dob;
         this.trainerEmail = email;
@@ -62,11 +63,11 @@ public class Trainer {
         this.trainerName = trainerName;
     }
 
-    public String getDoB() {
+    public LocalDate getDoB() {
         return trainerDoB;
     }
 
-    public void setDoB(String dob) {
+    public void setDoB(LocalDate dob) {
         this.trainerDoB = dob;
     }
 

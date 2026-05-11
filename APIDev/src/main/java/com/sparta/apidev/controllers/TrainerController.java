@@ -25,6 +25,12 @@ public class TrainerController {
         this.trainerRepository = trainerRepository;
     }
 
+    @Operation(summary = "Get all teachers", description = "Provides a list of all teachers")
+    @GetMapping(value = "/")
+    public ResponseEntity<List<TrainerDTO>> getAllTrainers() {
+        var trainers = trainerService.getAllTrainers();
+        return ResponseEntity.ok().body(trainers);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<TrainerDTO> getTrainer(@PathVariable Integer id) {
@@ -33,12 +39,6 @@ public class TrainerController {
         );
     }
 
-    @Operation(summary = "Get all teachers", description = "Provides a list of all teachers")
-    @GetMapping(value = "/")
-    public ResponseEntity<List<TrainerDTO>> getAllTrainers() {
-        var trainers = trainerService.getAllTrainers();
-        return ResponseEntity.ok().body(trainers);
-    }
     // create trainer
     @PostMapping
     public ResponseEntity<TrainerDTO> createTrainer(@RequestBody TrainerDTO trainerDTO) {
