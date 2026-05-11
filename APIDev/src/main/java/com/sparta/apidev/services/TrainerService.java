@@ -2,7 +2,6 @@ package com.sparta.apidev.services;
 
 import com.sparta.apidev.dtos.TrainerDTO;
 import com.sparta.apidev.dtos.TrainerMapper;
-import com.sparta.apidev.entities.Trainee;
 import com.sparta.apidev.repositories.TrainerRepository;
 import com.sparta.apidev.entities.Trainer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class TrainerService {
+
     private final TrainerRepository trainerRepository;
     private final TrainerMapper trainerMapper;
 

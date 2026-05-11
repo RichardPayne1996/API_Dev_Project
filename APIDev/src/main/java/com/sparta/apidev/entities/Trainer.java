@@ -2,6 +2,7 @@ package com.sparta.apidev.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -13,34 +14,34 @@ public class Trainer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Trainer ID", nullable = false)
+    @Column(name = "TrainerID", nullable = false)
     private Integer trainerID;
 
-    @Column(name = "Trainer Name", length = 40)
+    @Column(name = "TrainerName", length = 40)
     private String trainerName;
 
-    @Column(name = "DoB")
-    private String dob;
+    @Column(name = "TrainerDoB")
+    private LocalDate trainerDoB;
 
     @Column(name = "Email", length = 60)
-    private String email;
+    private String trainerEmail;
 
     @Column(name = "Title", length = 50)
-    private String title;
+    private String trainerTitle;
 
     @ManyToMany
     @JoinTable(
             name = "Teaching",
-            joinColumns = @JoinColumn(name = "Trainer ID"),
+            joinColumns = @JoinColumn(name = "TrainerID"),
             inverseJoinColumns = @JoinColumn(name = "Course Id")
     )
     private Set<Course> TeacherCourse = new HashSet<>();
 
-    public Trainer(String trainerName, String dob, String email, String title) {
+    public Trainer(String trainerName, LocalDate dob, String email, String title) {
         this.trainerName = trainerName;
-        this.dob = dob;
-        this.email = email;
-        this.title = title;
+        this.trainerDoB = dob;
+        this.trainerEmail = email;
+        this.trainerTitle = title;
     }
 
     public Trainer() {
@@ -62,28 +63,28 @@ public class Trainer {
         this.trainerName = trainerName;
     }
 
-    public String getDoB() {
-        return dob;
+    public LocalDate getDoB() {
+        return trainerDoB;
     }
 
-    public void setDoB(String dob) {
-        this.dob = dob;
+    public void setDoB(LocalDate dob) {
+        this.trainerDoB = dob;
     }
 
     public String getEmail() {
-        return email;
+        return trainerEmail;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.trainerEmail = email;
     }
 
     public String getTitle() {
-        return title;
+        return trainerTitle;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.trainerTitle = title;
     }
 
     public Set<Course> getCourses() {

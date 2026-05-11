@@ -1,16 +1,11 @@
 package com.sparta.apidev.controllers;
 
-import com.sparta.apidev.dtos.TraineeDTO;
-import com.sparta.apidev.dtos.TraineeMapper;
 import com.sparta.apidev.dtos.TrainerDTO;
 import com.sparta.apidev.dtos.TrainerMapper;
-import com.sparta.apidev.entities.Trainee;
 import com.sparta.apidev.entities.Trainer;
-import com.sparta.apidev.repositories.TraineeRepository;
 import com.sparta.apidev.repositories.TrainerRepository;
 import com.sparta.apidev.services.TrainerService;
 import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +15,7 @@ import java.util.List;
 @RequestMapping("/trainers")
 public class TrainerController {
 
-    private TrainerService trainerService;
+    private final TrainerService trainerService;
     private final TrainerMapper trainerMapper;
     private final TrainerRepository trainerRepository;
 
@@ -30,6 +25,12 @@ public class TrainerController {
         this.trainerRepository = trainerRepository;
     }
 
+    @Operation(summary = "Get all teachers", description = "Provides a list of all teachers")
+    @GetMapping(value = "/")
+    public ResponseEntity<List<TrainerDTO>> getAllTrainers() {
+        var trainers = trainerService.getAllTrainers();
+        return ResponseEntity.ok().body(trainers);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<TrainerDTO> getTrainer(@PathVariable Integer id) {
@@ -38,12 +39,6 @@ public class TrainerController {
         );
     }
 
-    @Operation(summary = "Get all teachers", description = "Provides a list of all teachers")
-    @GetMapping(value = "/")
-    public ResponseEntity<List<TrainerDTO>> getAllTrainers() {
-        var trainers = trainerService.getAllTrainers();
-        return ResponseEntity.ok().body(trainers);
-    }
     // create trainer
     @PostMapping
     public ResponseEntity<TrainerDTO> createTrainer(@RequestBody TrainerDTO trainerDTO) {
