@@ -552,8 +552,9 @@ jobs:
 
 ## Screenshots
 
-### Swagger UI
-_Add screenshot later_
+### Swagger UI or Postman
+<img width="1400" height="843" alt="Screenshot 2026-05-11 100247" src="https://github.com/user-attachments/assets/d8f338c2-bdc4-48d6-abfe-9d190482768e" />
+
 
 ### GitHub Project Board
 _Add screenshot later_
