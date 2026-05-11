@@ -35,12 +35,12 @@ public class TraineeController {
 
     @Operation(summary = "Get students by Id", description = "If a correct id is entered, returns a trainee")
     @GetMapping("/{id}")
-    public ResponseEntity<TraineeDTO> getTraineeById(@RequestParam(name = "id") int id) {
+    public ResponseEntity<TraineeDTO> getTraineeById(@PathVariable int id) {
         var trainee = traineeService.getTraineeById(id);
         if (trainee != null) {
             return ResponseEntity.ok().body(trainee);
         }
-        throw new RuntimeException("Trainee with id " + id + " not found");
+        return ResponseEntity.notFound().build();
     }
 
     @Operation(summary = "Add a new student", description = "If a student has all the correct information, adds them")
