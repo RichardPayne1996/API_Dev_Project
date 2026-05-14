@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.RedirectView;
 @RestController
 public class HomeController {
 
-    @GetMapping("/")
+    @GetMapping("/api")
     public RedirectView redirect() {
         return new RedirectView("/swagger-ui/index.html");
     }
