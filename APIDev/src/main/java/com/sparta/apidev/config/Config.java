@@ -31,11 +31,11 @@ public class Config {
             }
 
             if (teRepo.count() == 0){
-                var trainee1 = new Trainee("Ezra", LocalDate.of(2003, 6, 22), "eduncan@spartaglobal.com", "Mr");
-                var trainee2 = new Trainee("Richard", LocalDate.of(1996, 7, 24), "rpayne@spartaglobal.com", "Mr");
-                var trainee3 = new Trainee("Jacob", LocalDate.of(2001, 9, 26), "jreece@spartaglobal.com", "Mr");
-                var trainee4 = new Trainee("Mohammed", LocalDate.of(1998, 9, 11), "mnasseri@spartaglobal.com", "Mr");
-                var trainee5 = new Trainee("Pascal", LocalDate.of(2000, 5, 10), "ebibby@spartaglobal.com", "Mr");
+                var trainee1 = new Trainee("Ezra", LocalDate.of(2003, 6, 22), "email.com", "Mr");
+                var trainee2 = new Trainee("Richard", LocalDate.of(1996, 7, 24), "aglobal.com", "Mr");
+                var trainee3 = new Trainee("Jacob", LocalDate.of(2001, 9, 26), "jglobal.com", "Mr");
+                var trainee4 = new Trainee("Mohammed", LocalDate.of(1998, 9, 11), "taglobal.com", "Mr");
+                var trainee5 = new Trainee("Pascal", LocalDate.of(2000, 5, 10), "eobal.com", "Mr");
 
                 teRepo.save(trainee1);
                 teRepo.save(trainee2);
