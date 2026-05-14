@@ -8,6 +8,8 @@ import java.util.List;
 
 import com.sparta.apidev.dtos.CourseDTO;
 import com.sparta.apidev.services.CourseService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +18,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/courses")
+@Tag(
+        name = "Course Management",
+        description = "Endpoints for managing Sparta Academy courses, including creating, retrieving, updating, and deleting course records."
+)
 public class CourseController {
 
     private final CourseService courseService;
@@ -24,7 +30,10 @@ public class CourseController {
         this.courseService = courseService;
     }
 
-    // GET all courses
+    @Operation(
+            summary = "Retrieve all courses",
+            description = "Returns a complete list of all available courses in the system."
+    )
     @GetMapping
     public ResponseEntity<List<CourseDTO>> getAllCourses() {
 
@@ -33,7 +42,10 @@ public class CourseController {
         return ResponseEntity.ok(courses);
     }
 
-    // GET course by ID
+    @Operation(
+            summary = "Retrieve a course by ID",
+            description = "Returns a single course matching the provided course ID."
+    )
     @GetMapping("/{id}")
     public ResponseEntity<CourseDTO> getCourseById(@PathVariable int id) {
 
@@ -46,7 +58,10 @@ public class CourseController {
         return ResponseEntity.ok(course);
     }
 
-    // CREATE new course
+    @Operation(
+            summary = "Create a new course",
+            description = "Creates and stores a new course record in the database."
+    )
     @PostMapping
     public ResponseEntity<CourseDTO> createCourse(@RequestBody CourseDTO courseDTO) {
 
@@ -55,7 +70,10 @@ public class CourseController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdCourse);
     }
 
-    // UPDATE existing course
+    @Operation(
+            summary = "Update an existing course",
+            description = "Updates the details of an existing course using the provided course ID."
+    )
     @PutMapping("/{id}")
     public ResponseEntity<CourseDTO> updateCourse(
             @PathVariable int id,
@@ -71,7 +89,10 @@ public class CourseController {
         return ResponseEntity.ok(updatedCourse);
     }
 
-    // DELETE course
+    @Operation(
+            summary = "Delete a course",
+            description = "Deletes the course associated with the provided course ID."
+    )
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteCourse(@PathVariable int id) {
 
