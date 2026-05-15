@@ -23,8 +23,8 @@ public class Config {
             System.out.println("Data Loader Running...");
 
             if (trRepo.count() == 0){
-                var trainer1 = new Trainer("Cathy French", LocalDate.of(1990, 01, 01), "cfrench@spartaglobal.com", "Mrs");
-                var trainer2 = new Trainer("Phil Windridge", LocalDate.of(1990,02,02), "pwindridge@spartaglobal.com", "Mr");
+                var trainer1 = new Trainer("Cathy French", LocalDate.of(1990, 1, 1), "cfrench@spartaglobal.com", "Mrs");
+                var trainer2 = new Trainer("Phil Windridge", LocalDate.of(1990,2,2), "pwindridge@spartaglobal.com", "Mr");
 
                 trRepo.save(trainer1);
                 trRepo.save(trainer2);

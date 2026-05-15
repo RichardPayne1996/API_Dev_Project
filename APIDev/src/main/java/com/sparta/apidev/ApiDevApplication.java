@@ -21,7 +21,7 @@ public class ApiDevApplication {
         CourseRepository cRepo = context.getBean(CourseRepository.class);
 
         for (Trainer trainer : trRepo.findAll()){
-            System.out.println(trainer.getEmail());
+            System.out.println(trainer.getTrainerEmail());
         }
 
 
