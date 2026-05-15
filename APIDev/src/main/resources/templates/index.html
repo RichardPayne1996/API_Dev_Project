@@ -17,17 +17,48 @@
 
         body {
             font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
+            background: linear-gradient(#f5f5f5, #eaeaea);
             color: #222;
         }
 
+        .sparta-animated-bg {
+            background: rgba(17, 17, 17, 0.55);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+
+            background-image:
+                    radial-gradient(rgba(255,255,255,0.35) 1.2px, transparent 1.2px),
+                    linear-gradient(90deg, #0f0f0f, #1c1c1c, #0f0f0f);
+
+            background-size: 16px 16px, 200% 100%;
+            background-blend-mode: screen;
+
+            animation: navSweep 30s linear infinite;
+        }
+
+        @keyframes navSweep {
+            0% {
+                background-position: 0px 0px, 0% 50%;
+            }
+
+            100% {
+                background-position: 200px 200px, 200% 50%;
+            }
+        }
+
         nav {
-            background-color: #111;
-            color: white;
-            padding: 20px 60px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
             display: flex;
             justify-content: space-between;
             align-items: center;
+
+            padding: 20px 60px;
+            color: white;
         }
 
         nav h1 {
@@ -53,18 +84,20 @@
 
         .hero {
             height: 400px;
+
             background:
-                    linear-gradient(rgba(0,0,0,0.65),
-                    rgba(0,0,0,0.65)),
+                    linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
                     url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600');
+
             background-size: cover;
             background-position: center;
+
             display: flex;
             justify-content: center;
             align-items: center;
+
             text-align: center;
             color: white;
-            padding: 20px;
         }
 
         .hero-content h2 {
@@ -75,7 +108,6 @@
         .hero-content p {
             font-size: 20px;
             max-width: 700px;
-            margin: auto;
         }
 
         .container {
@@ -128,41 +160,11 @@
             background-color: #e63946;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        thead {
-            background-color: #111;
-            color: white;
-        }
-
-        th, td {
-            padding: 14px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        tr:hover {
-            background-color: #f0f0f0;
-        }
-
-        #courseSearch {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-        }
-
         footer {
-            background-color: #111;
-            color: white;
             text-align: center;
             padding: 25px;
             margin-top: 60px;
+            color: white;
         }
 
     </style>
@@ -170,14 +172,15 @@
 
 <body>
 
-<nav>
+<nav class="sparta-animated-bg">
 
     <h1>Sparta Academy</h1>
 
     <ul>
         <li><a th:href="@{/}">Home</a></li>
-        <li><a th:href="@{/viewTrainees}">Trainees</a></li>
-        <li><a th:href="@{/viewTrainers}">Trainers</a></li>
+        <li><a th:href="@{/trainees/view}">Trainees</a></li>
+        <li><a th:href="@{/trainers/view}">Trainers</a></li>
+        <li><a th:href="@{/courses/view}">Courses</a></li>
     </ul>
 
 </nav>
@@ -185,20 +188,14 @@
 <section class="hero">
 
     <div class="hero-content">
-
         <h2>Training Management Portal</h2>
-
-        <p>
-            Manage trainees, trainers and courses.
-        </p>
-
+        <p>Manage trainees, trainers and courses through a modern Sparta Academy dashboard.</p>
     </div>
 
 </section>
 
 <div class="container">
 
-    <!-- TRAINEE SELF VIEW BUTTON BACK -->
     <h2 class="section-title">Trainee Access</h2>
 
     <div class="card-grid">
@@ -206,46 +203,22 @@
         <div class="card">
             <h3>My Profile</h3>
             <p>View your trainee information including assigned course.</p>
-            <a th:href="@{/trainees/profile}">View My Info</a>
+            <a th:href="@{/trainees/{id}(id=${traineeId})}">View My Info</a>
         </div>
 
     </div>
 
-    <!-- COURSES -->
-
     <h2 class="section-title">Available Courses</h2>
 
-    <div class="card">
+    <div class="card-grid">
 
-        <input
-                type="text"
-                id="courseSearch"
-                placeholder="Search by course name or course ID..."
-        >
-
-        <table id="courseTable">
-
-            <thead>
-            <tr>
-                <th>Course ID</th>
-                <th>Course Name</th>
-                <th>Description</th>
-            </tr>
-            </thead>
-
-            <tbody>
-            <tr th:each="course : ${courses}">
-                <td th:text="${course.id}"></td>
-                <td th:text="${course.courseName}"></td>
-                <td th:text="${course.description}"></td>
-            </tr>
-            </tbody>
-
-        </table>
+        <div class="card">
+            <h3>View Courses</h3>
+            <p>Browse all available courses in the academy.</p>
+            <a th:href="@{/courses/view}">View Courses</a>
+        </div>
 
     </div>
-
-    <!-- TRAINER FEATURES -->
 
     <h2 class="section-title">Trainer Features</h2>
 
@@ -254,48 +227,28 @@
         <div class="card">
             <h3>Manage Trainees</h3>
             <p>View, filter, add, edit and remove trainee records.</p>
-            <a th:href="@{/viewTrainees}">Open</a>
+            <a th:href="@{/trainees/view}">Open</a>
         </div>
 
         <div class="card">
             <h3>Manage Courses</h3>
             <p>Create and maintain course information.</p>
-            <a th:href="@{/courses/manage}">Open</a>
+            <a th:href="@{/courses/view}">Open</a>
         </div>
 
         <div class="card">
             <h3>Manage Trainers</h3>
             <p>View and manage trainer information.</p>
-            <a th:href="@{/viewTrainers}">Open</a>
+            <a th:href="@{/trainers/view}">Open</a>
         </div>
 
     </div>
 
 </div>
 
-<footer>
-    <p>Sparta Academy Management System</p>
+<footer class="sparta-animated-bg">
+    Sparta Academy Management System
 </footer>
-
-<script>
-
-    const searchInput = document.getElementById("courseSearch");
-
-    searchInput.addEventListener("keyup", function () {
-
-        const filter = searchInput.value.toLowerCase();
-
-        const rows = document.querySelectorAll("#courseTable tbody tr");
-
-        rows.forEach(row => {
-
-            const text = row.textContent.toLowerCase();
-
-            row.style.display = text.includes(filter) ? "" : "none";
-        });
-    });
-
-</script>
 
 </body>
 </html>
