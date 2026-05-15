@@ -1,8 +1,10 @@
 package com.sparta.apidev.config;
 
+import com.sparta.apidev.entities.Account;
 import com.sparta.apidev.entities.Course;
 import com.sparta.apidev.entities.Trainee;
 import com.sparta.apidev.entities.Trainer;
+import com.sparta.apidev.repositories.AccountRepository;
 import com.sparta.apidev.repositories.CourseRepository;
 import com.sparta.apidev.repositories.TraineeRepository;
 import com.sparta.apidev.repositories.TrainerRepository;
@@ -22,7 +24,7 @@ public class Config {
 
     @Bean
     @Transactional
-    public CommandLineRunner loadData(TrainerRepository trRepo, TraineeRepository teRepo, CourseRepository cRepo){
+    public CommandLineRunner loadData(TrainerRepository trRepo, TraineeRepository teRepo, CourseRepository cRepo, AccountRepository aRepo){
         return args -> {
             System.out.println("Data Loader Running...");
 
@@ -55,6 +57,12 @@ public class Config {
                 cRepo.save(course1);
                 cRepo.save(course2);
             }
+
+            Account testAccount = new Account();
+            testAccount.setUsername("username");
+            testAccount.setPassword(passwordEncoder().encode("password"));
+            testAccount.setRole("User");
+            aRepo.save(testAccount);
         };
     }
 
@@ -67,7 +75,7 @@ public class Config {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
-                .formLogin(form -> form.defaultSuccessUrl("/todos/").permitAll())
+                .formLogin(form -> form.defaultSuccessUrl("/").permitAll())
                 .csrf(csrf -> csrf.disable());
         return http.build();
     }
