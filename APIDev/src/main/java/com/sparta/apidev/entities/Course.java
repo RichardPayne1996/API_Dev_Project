@@ -2,8 +2,6 @@ package com.sparta.apidev.entities;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,8 +23,8 @@ public class Course {
     @ManyToMany(mappedBy = "traineeCourse")
     private Set<Trainee> trainees = new HashSet<>();
 
-    @ManyToMany(mappedBy = "TeacherCourse")
-    private List<Trainer> trainers = new ArrayList<>();
+    @ManyToMany(mappedBy = "teacherCourse")
+    private Set<Trainer> trainers = new HashSet<>();
 
     public Course(String courseName, String description) {
         this.courseName = courseName;
@@ -72,11 +70,11 @@ public class Course {
     }
 
     // trainers
-    public List<Trainer> getTrainers() {
+    public Set<Trainer> getTrainers() {
         return trainers;
     }
 
-    public void setTrainers(List<Trainer> trainers) {
+    public void setTrainers(Set<Trainer> trainers) {
         this.trainers = trainers;
     }
 

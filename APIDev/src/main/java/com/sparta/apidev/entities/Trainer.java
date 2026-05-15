@@ -3,9 +3,7 @@ package com.sparta.apidev.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -34,7 +32,7 @@ public class Trainer {
             joinColumns = @JoinColumn(name = "TrainerID"),
             inverseJoinColumns = @JoinColumn(name = "Course Id")
     )
-    private Set<Course> TeacherCourse = new HashSet<>();
+    private Set<Course> teacherCourse = new HashSet<>();
 
     public Trainer(String trainerName, LocalDate trainerDoB, String email, String title) {
         this.trainerName = trainerName;
@@ -87,6 +85,6 @@ public class Trainer {
     }
 
     public Set<Course> getCourses() {
-        return this.TeacherCourse;
+        return this.teacherCourse;
     }
 }
