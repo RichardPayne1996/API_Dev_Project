@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Sparta Academy Portal</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #222;
+        }
+
+        nav {
+            background-color: #111;
+            color: white;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav h1 {
+            color: #e63946;
+            font-size: 28px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #e63946;
+        }
+
+        .hero {
+            height: 400px;
+            background:
+                    linear-gradient(rgba(0,0,0,0.65),
+                    rgba(0,0,0,0.65)),
+                    url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .hero-content h2 {
+            font-size: 52px;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .container {
+            width: 90%;
+            margin: 60px auto;
+        }
+
+        .section-title {
+            margin-bottom: 25px;
+            font-size: 32px;
+            color: #111;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: #e63946;
+        }
+
+        .card p {
+            margin-bottom: 20px;
+            line-height: 1.5;
+            color: #555;
+        }
+
+        .card a {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #111;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .card a:hover {
+            background-color: #e63946;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background-color: #111;
+            color: white;
+        }
+
+        th, td {
+            padding: 14px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #f0f0f0;
+        }
+
+        #courseSearch {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        footer {
+            background-color: #111;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 60px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<nav>
+
+    <h1>Sparta Academy</h1>
+
+    <ul>
+        <li><a th:href="@{/}">Home</a></li>
+        <li><a th:href="@{/viewTrainees}">Trainees</a></li>
+        <li><a th:href="@{/viewTrainers}">Trainers</a></li>
+    </ul>
+
+</nav>
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h2>Training Management Portal</h2>
+
+        <p>
+            Manage trainees, trainers and courses through a modern Sparta Academy dashboard.
+        </p>
+
+    </div>
+
+</section>
+
+<div class="container">
+
+    <!-- TRAINEE SELF VIEW BUTTON BACK -->
+    <h2 class="section-title">Trainee Access</h2>
+
+    <div class="card-grid">
+
+        <div class="card">
+            <h3>My Profile</h3>
+            <p>View your trainee information including assigned course.</p>
+            <a th:href="@{/trainees/profile}">View My Info</a>
+        </div>
+
+    </div>
+
+    <!-- COURSES -->
+
+    <h2 class="section-title">Available Courses</h2>
+
+    <div class="card">
+
+        <input
+                type="text"
+                id="courseSearch"
+                placeholder="Search by course name or course ID..."
+        >
+
+        <table id="courseTable">
+
+            <thead>
+            <tr>
+                <th>Course ID</th>
+                <th>Course Name</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="course : ${courses}">
+                <td th:text="${course.id}"></td>
+                <td th:text="${course.courseName}"></td>
+                <td th:text="${course.description}"></td>
+            </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <!-- TRAINER FEATURES -->
+
+    <h2 class="section-title">Trainer Features</h2>
+
+    <div class="card-grid">
+
+        <div class="card">
+            <h3>Manage Trainees</h3>
+            <p>View, filter, add, edit and remove trainee records.</p>
+            <a th:href="@{/viewTrainees}">Open</a>
+        </div>
+
+        <div class="card">
+            <h3>Manage Courses</h3>
+            <p>Create and maintain course information.</p>
+            <a th:href="@{/courses/manage}">Open</a>
+        </div>
+
+        <div class="card">
+            <h3>Manage Trainers</h3>
+            <p>View and manage trainer information.</p>
+            <a th:href="@{/viewTrainers}">Open</a>
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    <p>Sparta Academy Management System</p>
+</footer>
+
+<script>
+
+    const searchInput = document.getElementById("courseSearch");
+
+    searchInput.addEventListener("keyup", function () {
+
+        const filter = searchInput.value.toLowerCase();
+
+        const rows = document.querySelectorAll("#courseTable tbody tr");
+
+        rows.forEach(row => {
+
+            const text = row.textContent.toLowerCase();
+
+            row.style.display = text.includes(filter) ? "" : "none";
+        });
+    });
+
+</script>
+
+</body>
+</html>
