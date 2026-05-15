@@ -1,5 +1,6 @@
 package com.sparta.apidev.controllers;
 
+import com.sparta.apidev.dtos.TraineeDTO;
 import com.sparta.apidev.dtos.TrainerDTO;
 import com.sparta.apidev.dtos.TrainerMapper;
 import com.sparta.apidev.entities.Trainer;
@@ -9,6 +10,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -33,19 +35,18 @@ public class TrainerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TrainerDTO> getTrainer(@PathVariable Integer id) {
-        return ResponseEntity.ok(
-                trainerService.getTrainerByID(id)
-        );
+    public ResponseEntity<TrainerDTO> getTrainer(@PathVariable int id) {
+        var trainer = trainerService.getTrainerByID(id);
+        if (trainer == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(trainer);
     }
 
     // create trainer
     @PostMapping
     public ResponseEntity<TrainerDTO> createTrainer(@RequestBody TrainerDTO trainerDTO) {
-        if (trainerService.getTrainerByID(trainerDTO.getTrainerId()) != null) {
-            throw new RuntimeException("Trainer with id " + trainerDTO.getTrainerId() + " already exists");
-        }
-        if (trainerDTO.getTrainerName() == null || trainerDTO.getTrainerEmail() == null || trainerDTO.getTrainerDOB() == null || trainerDTO.getTrainerTitle() == null) {
+        if (trainerDTO.getTrainerName() == null || trainerDTO.getTrainerEmail() == null || trainerDTO.getTrainerDob() == null || trainerDTO.getTrainerTitle() == null) {
             String exception = "Incomplete trainer information, missing the following data:";
             if (trainerDTO.getTrainerName() == null) {
                 exception += " Trainer Name,";
@@ -53,7 +54,7 @@ public class TrainerController {
             if (trainerDTO.getTrainerEmail() == null) {
                 exception += " Trainer Email,";
             }
-            if (trainerDTO.getTrainerDOB() == null) {
+            if (trainerDTO.getTrainerDob() == null) {
                 exception += " Trainer DOB,";
             }
             if (trainerDTO.getTrainerTitle() == null) {
@@ -66,13 +67,27 @@ public class TrainerController {
         return ResponseEntity.ok(trainerMapper.toDTO(saved));
     }
     // update trainer
-    @PutMapping("/{id}")
-    public ResponseEntity<TrainerDTO> updateTrainer(
-            @PathVariable Integer id,
-            @RequestBody TrainerDTO trainerDTO) {
-
-        TrainerDTO updateTrainer = trainerService.updateTrainer(id, trainerDTO);
-        return ResponseEntity.ok(updateTrainer);
+    @PatchMapping("/{id}")
+    public ResponseEntity<TrainerDTO> updateCustomer(@PathVariable int id, @RequestBody TrainerDTO trainer) {
+        trainer.setTrainerId(id);
+        TrainerDTO oldTrainee = trainerService.getTrainerByID(id);
+        if (oldTrainee == null) {
+            return ResponseEntity.notFound().build();
+        }
+        if (trainer.getTrainerTitle() == null ||  trainer.getTrainerTitle().equals("string")) {
+            trainer.setTrainerTitle(oldTrainee.getTrainerTitle());
+        }
+        if (trainer.getTrainerEmail() == null || trainer.getTrainerEmail().equals("string")) {
+            trainer.setTrainerEmail(oldTrainee.getTrainerEmail());
+        }
+        if (trainer.getTrainerDob() == null || trainer.getTrainerDob().equals(LocalDate.now())) {
+            trainer.setTrainerDob(oldTrainee.getTrainerDob());
+        }
+        if (trainer.getTrainerName() == null || trainer.getTrainerName().equals("string")) {
+            trainer.setTrainerName(oldTrainee.getTrainerName());
+        }
+        TrainerDTO updatedTrainer = trainerService.updateTrainer(id, trainer);
+        return ResponseEntity.ok().body(updatedTrainer);
     }
     // delete trainer
     @DeleteMapping("/{id}")
