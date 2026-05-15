@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>All Trainers</title>
+
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+            rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h1>All Trainers</h1>
+
+        <a class="btn btn-primary"
+           th:href="@{/trainees/new}">
+            Add Trainer
+        </a>
+
+    </div>
+
+    <table class="table table-bordered table-hover bg-white">
+
+        <thead class="table-dark">
+
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Name</th>
+            <th>Date of Birth</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        <tr th:each="t : ${trainers}">
+
+            <td th:text="${t.trainerId}"></td>
+
+            <td th:text="${t.trainerTitle}"></td>
+
+            <td th:text="${t.trainerName}"></td>
+
+            <td th:text="${t.trainerDob}"></td>
+
+            <td th:text="${t.trainerEmail}"></td>
+
+            <td>
+
+                <a class="btn btn-sm btn-info"
+                   th:href="@{/trainers/{id}(id=${t.trainerId})}">
+                    View
+                </a>
+
+                <a class="btn btn-sm btn-warning"
+                   th:href="@{/trainers/{id}/edit(id=${t.trainerId})}">
+                    Edit
+                </a>
+
+                <form th:action="@{/trainers/{id}/delete(id=${t.trainerId})}"
+                      method="post"
+                      class="d-inline">
+
+                    <button type="submit"
+                            class="btn btn-sm btn-danger">
+                        Delete
+                    </button>
+
+                </form>
+
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>
