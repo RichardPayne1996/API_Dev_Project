@@ -34,6 +34,14 @@ public class TraineeService {
         return traineeRepository.findById(id).map(traineeMapper::toDTO)
                 .orElse(null);
     }
+    public TraineeDTO saveTrainee(TraineeDTO dto) {
+
+        Trainee trainee = traineeMapper.toEntity(dto);
+
+        Trainee saved = traineeRepository.save(trainee);
+
+        return traineeMapper.toDTO(saved);
+    }
 
     public TraineeDTO saveTrainee(Trainee trainee) {
         return traineeMapper.toDTO(traineeRepository.save(trainee));
