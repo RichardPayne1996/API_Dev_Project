@@ -51,23 +51,18 @@ public class TrainerService {
         return false;
     }
 
-    public TrainerDTO updateTrainer(int iD, TrainerDTO dto){
-        if (trainerRepository.existsById(dto.getTrainerId())){
+    public TrainerDTO updateTrainer(int iD, TrainerDTO dto) {
             Trainer trainer = trainerRepository.findById(iD)
-                    .orElseThrow(() -> new RuntimeException("Trainee not found"));
+                    .orElseThrow(() -> new RuntimeException("Trainer not found"));
 
             trainer.setTrainerName(dto.getTrainerName());
-            trainer.setDoB(dto.getTrainerDOB());
-            trainer.setEmail(dto.getTrainerEmail());
-            trainer.setID(dto.getTrainerId());
-            trainer.setTitle(dto.getTrainerTitle());
+            trainer.setTrainerDob(dto.getTrainerDob());
+            trainer.setTrainerEmail(dto.getTrainerEmail());
+            trainer.setTrainerTitle(dto.getTrainerTitle());
 
             Trainer updated = trainerRepository.save(trainer);
 
             return trainerMapper.toDTO(updated);
-        }else {
-            throw new IllegalArgumentException("Trainer with ID " + dto.getTrainerId() + " does not exist.");
-        }
 
     }
 

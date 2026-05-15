@@ -6,14 +6,14 @@ public class TrainerDTO {
     private int trainerId;
     private String trainerName;
     private String trainerEmail;
-    private LocalDate trainerDOB;
+    private LocalDate trainerDob;
     private String trainerTitle;
 
-    public TrainerDTO(int trainerId, String trainerName, String trainerEmail, LocalDate trainerDOB, String trainerTitle) {
+    public TrainerDTO(int trainerId, String trainerName, String trainerEmail, LocalDate trainerDoB, String trainerTitle) {
         this.trainerId = trainerId;
         this.trainerName = trainerName;
         this.trainerEmail = trainerEmail;
-        this.trainerDOB = trainerDOB;
+        this.trainerDob = trainerDoB;
         this.trainerTitle = trainerTitle;
     }
     public TrainerDTO(){}
@@ -42,12 +42,12 @@ public class TrainerDTO {
         this.trainerEmail = trainerEmail;
     }
 
-    public LocalDate getTrainerDOB() {
-        return trainerDOB;
+    public LocalDate getTrainerDob() {
+        return trainerDob;
     }
 
-    public void setTrainerDOB(LocalDate trainerDOB) {
-        this.trainerDOB = trainerDOB;
+    public void setTrainerDob(LocalDate trainerDoB) {
+        this.trainerDob = trainerDoB;
     }
 
     public String getTrainerTitle() {

@@ -3,9 +3,7 @@ package com.sparta.apidev.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -15,31 +13,30 @@ public class Trainer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "TrainerID", nullable = false)
-    private Integer trainerID;
+    private int trainerId;
 
     @Column(name = "TrainerName", length = 40)
     private String trainerName;
 
-    @Column(name = "TrainerDoB")
-    private LocalDate trainerDoB;
+    @Column(name = "trainerDoB")
+    private LocalDate trainerDob;
 
     @Column(name = "Email", length = 60)
     private String trainerEmail;
 
     @Column(name = "Title", length = 50)
     private String trainerTitle;
-
     @ManyToMany
     @JoinTable(
             name = "Teaching",
             joinColumns = @JoinColumn(name = "TrainerID"),
             inverseJoinColumns = @JoinColumn(name = "Course Id")
     )
-    private Set<Course> TeacherCourse = new HashSet<>();
+    private Set<Course> teacherCourse = new HashSet<>();
 
-    public Trainer(String trainerName, LocalDate dob, String email, String title) {
+    public Trainer(String trainerName, LocalDate trainerDoB, String email, String title) {
         this.trainerName = trainerName;
-        this.trainerDoB = dob;
+        this.trainerDob = trainerDoB;
         this.trainerEmail = email;
         this.trainerTitle = title;
     }
@@ -47,12 +44,12 @@ public class Trainer {
     public Trainer() {
     }
 
-    public Integer getID() {
-        return trainerID;
+    public int getTrainerId() {
+        return trainerId;
     }
 
-    public void setID(Integer id) {
-        this.trainerID = id;
+    public void setTrainerId(int id) {
+        this.trainerId = id;
     }
 
     public String getTrainerName() {
@@ -63,31 +60,31 @@ public class Trainer {
         this.trainerName = trainerName;
     }
 
-    public LocalDate getDoB() {
-        return trainerDoB;
+    public LocalDate getTrainerDob() {
+        return trainerDob;
     }
 
-    public void setDoB(LocalDate dob) {
-        this.trainerDoB = dob;
+    public void setTrainerDob(LocalDate trainerDoB) {
+        this.trainerDob = trainerDoB;
     }
 
-    public String getEmail() {
+    public String getTrainerEmail() {
         return trainerEmail;
     }
 
-    public void setEmail(String email) {
+    public void setTrainerEmail(String email) {
         this.trainerEmail = email;
     }
 
-    public String getTitle() {
+    public String getTrainerTitle() {
         return trainerTitle;
     }
 
-    public void setTitle(String title) {
+    public void setTrainerTitle(String title) {
         this.trainerTitle = title;
     }
 
     public Set<Course> getCourses() {
-        return this.TeacherCourse;
+        return this.teacherCourse;
     }
 }
