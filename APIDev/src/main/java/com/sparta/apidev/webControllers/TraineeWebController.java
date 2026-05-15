@@ -1,24 +1,22 @@
 package com.sparta.apidev.webControllers;
 
-
-
 import com.sparta.apidev.dtos.TraineeDTO;
-import com.sparta.apidev.entities.Trainee;
 import com.sparta.apidev.services.TraineeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @Controller
 @RequestMapping("/trainees")
 public class TraineeWebController {
+
     private final TraineeService traineeService;
+
     public TraineeWebController(TraineeService traineeService) {
         this.traineeService = traineeService;
     }
-    //  Display all trainees
+
+    // VIEW ALL
     @GetMapping
     public String getAllTrainees(Model model) {
 
@@ -27,29 +25,10 @@ public class TraineeWebController {
                 traineeService.getAllTrainees()
         );
 
-
         return "trainees/index";
     }
-    // create new one
-    @GetMapping("/new")
-    public String showCreateTraineeForm(Model model) {
-        model.addAttribute("trainee",new Trainee());
-        return "trainees/new";
-    }
-    // Save trainee
-    @PostMapping("/save")
-    public String saveTrainee(@ModelAttribute TraineeDTO traineeDTO) {
-        traineeService.saveTrainee(
-                traineeService
-                        .saveTrainee(
-                                traineeDTO
-                        )
 
-        );
-
-        return "redirect:/trainees";
-    }
-    // View trainee details
+    // VIEW ONE
     @GetMapping("/{id}")
     public String viewTrainee(
             @PathVariable int id,
@@ -63,7 +42,58 @@ public class TraineeWebController {
 
         return "trainees/view";
     }
-    // Delete trainee
+
+    // SHOW CREATE FORM
+    @GetMapping("/new")
+    public String showCreateForm(Model model) {
+
+        model.addAttribute(
+                "trainee",
+                new TraineeDTO()
+        );
+
+        return "trainees/new";
+    }
+
+    // SAVE NEW TRAINEE
+    @PostMapping("/save")
+    public String saveTrainee(
+            @ModelAttribute TraineeDTO traineeDTO
+    ) {
+
+        traineeService.saveTrainee(traineeDTO);
+
+        return "redirect:/trainees";
+    }
+
+    // SHOW EDIT FORM
+    @GetMapping("/{id}/edit")
+    public String editTrainee(
+            @PathVariable int id,
+            Model model
+    ) {
+
+        TraineeDTO trainee =
+                traineeService.getTraineeById(id);
+
+        model.addAttribute("trainee", trainee);
+
+        return "trainees/edit";
+    }
+
+    // UPDATE TRAINEE
+    @PostMapping("/{id}/update")
+    public String updateTrainee(
+            @PathVariable int id,
+            @ModelAttribute TraineeDTO traineeDTO
+    ) {
+
+        traineeService.updateTrainee(id, traineeDTO);
+
+        return "redirect:/trainees";
+    }
+
+    // DELETE TRAINEE
     @PostMapping("/{id}/delete")
     public String deleteTrainee(
             @PathVariable int id
@@ -73,7 +103,4 @@ public class TraineeWebController {
 
         return "redirect:/trainees";
     }
-
-
-
 }
