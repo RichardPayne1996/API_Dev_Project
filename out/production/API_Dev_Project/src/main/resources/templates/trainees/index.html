@@ -75,7 +75,8 @@
                   class="d-inline">
 
                 <button type="submit"
-                        class="btn btn-sm btn-danger delete">
+                        class="btn btn-sm btn-danger"
+                        onclick="return confirm('Are you sure you wish to delete this trainer?')">
                     Delete
             </button>
 
@@ -92,7 +93,6 @@
     </table>
 
 </div>
-<script th:src="@{/js/handling.js}"></script>
 
 </body>
 </html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="">
+
+<head>
+    <title>Sparta Academy Portal</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(#f5f5f5, #eaeaea);
+            color: #222;
+        }
+
+        .sparta-animated-bg {
+            background: rgba(17, 17, 17, 0.55);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+
+            background-image:
+                    radial-gradient(rgba(255,255,255,0.35) 1.2px, transparent 1.2px),
+                    linear-gradient(90deg, #0f0f0f, #1c1c1c, #0f0f0f);
+
+            background-size: 16px 16px, 200% 100%;
+            background-blend-mode: screen;
+
+            animation: navSweep 30s linear infinite;
+        }
+
+        @keyframes navSweep {
+            0% {
+                background-position: 0px 0px, 0% 50%;
+            }
+
+            100% {
+                background-position: 200px 200px, 200% 50%;
+            }
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 20px 60px;
+            color: white;
+        }
+
+        nav h1 {
+            color: #e63946;
+            font-size: 28px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #e63946;
+        }
+
+        .hero {
+            height: 400px;
+
+            background:
+                    linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+                    url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600');
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h2 {
+            font-size: 52px;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            max-width: 700px;
+        }
+
+        .container {
+            width: 90%;
+            margin: 60px auto;
+        }
+
+        .section-title {
+            margin-bottom: 25px;
+            font-size: 32px;
+            color: #111;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: #e63946;
+        }
+
+        .card p {
+            margin-bottom: 20px;
+            line-height: 1.5;
+            color: #555;
+        }
+
+        .card a {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #111;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .card a:hover {
+            background-color: #e63946;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            margin-top: 60px;
+            color: white;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<section class="hero">
+
+    <div class="hero-content">
+        <h2>Training Management Portal</h2>
+        <p>Manage trainees, trainers and courses through a modern Sparta Academy dashboard.</p>
+    </div>
+
+</section>
+
+<div sec:authorize="hasRole('TRAINEE')" class="container">
+
+    <h2 class="section-title">Trainee Access</h2>
+
+    <div class="card-grid">
+
+        <div class="card">
+            <h3>My Profile</h3>
+            <p>View your trainee information including assigned course.</p>
+            <a th:href="@{/trainees/{id}(id=${traineeId})}">View My Info</a>
+        </div>
+
+    </div>
+
+    <h2 class="section-title">Available Courses</h2>
+
+    <div class="card-grid">
+
+        <div class="card">
+            <h3>View Courses</h3>
+            <p>Browse all available courses in the academy.</p>
+            <a th:href="@{/courses}">View Courses</a>
+        </div>
+
+    </div>
+</div>
+
+<div sec:authorize="hasRole('TRAINER')" class="container">
+    <h2 class="section-title">Trainer Features</h2>
+
+    <div class="card-grid">
+
+        <div class="card">
+            <h3>Manage Trainees</h3>
+            <p>View, filter, add, edit and remove trainee records.</p>
+            <a th:href="@{/trainees}">Open</a>
+        </div>
+
+        <div class="card">
+            <h3>Manage Courses</h3>
+            <p>Create and maintain course information.</p>
+            <a th:href="@{/courses}">Open</a>
+        </div>
+
+        <div class="card">
+            <h3>Manage Trainers</h3>
+            <p>View and manage trainer information.</p>
+            <a th:href="@{/trainers}">Open</a>
+        </div>
+
+    </div>
+
+</div>
+
+<footer class="sparta-animated-bg">
+    Sparta Academy Management System
+</footer>
+
+</body>
+</html>
