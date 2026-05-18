@@ -13,8 +13,7 @@ public class TraineeDTO {
     private String traineeEmail;
     private LocalDate traineeDob;
     private String traineeTitle;
-
-    private boolean trainer;
+    private String role;
 
 
     public TraineeDTO(int traineeId, String traineeName, String traineeEmail, LocalDate traineeDOB, String traineeTitle, boolean trainer) {
@@ -22,7 +21,6 @@ public class TraineeDTO {
         this.traineeEmail = traineeEmail;
         this.traineeDob = traineeDOB;
         this.traineeTitle = traineeTitle;
-        this.trainer = true;
     }
     public TraineeDTO() {}
 
@@ -66,11 +64,11 @@ public class TraineeDTO {
         this.traineeTitle = traineeTitle;
     }
 
-    public boolean getTrainer() {
-        return this.trainer;
+    public String getRole() {
+        return this.role;
     }
 
-    public void setTrainer(boolean isTrainer) {
-        this.trainer = isTrainer;
+    public void setRole(String isTrainer) {
+        this.role = isTrainer;
     }
 }
