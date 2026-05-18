@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <title>All Courses</title>
@@ -18,6 +19,7 @@
         <h1>All Courses</h1>
 
         <a class="btn btn-primary"
+           sec:authorize="hasRole('TRAINER')"
            th:href="@{/courses/new}">
             Add Course
         </a>
@@ -54,21 +56,25 @@
                     View
                 </a>
 
-                <a class="btn btn-sm btn-warning"
-                   th:href="@{/courses/{id}/edit(id=${c.courseId})}">
-                    Edit
-                </a>
+                <span sec:authorize="hasRole('TRAINER')">
 
-                <form th:action="@{/courses/{id}/delete(id=${c.courseId})}"
-                      method="post"
-                      class="d-inline">
+        <a class="btn btn-sm btn-warning"
+           th:href="@{/courses/{id}/edit(id=${c.courseId})}">
+            Edit
+        </a>
 
-                    <button type="submit"
-                            class="btn btn-sm btn-danger">
-                        Delete
-                    </button>
+        <form th:action="@{/courses/{id}/delete(id=${c.courseId})}"
+              method="post"
+              class="d-inline">
 
-                </form>
+            <button type="submit"
+                    class="btn btn-sm btn-danger">
+                Delete
+            </button>
+
+        </form>
+
+    </span>
 
             </td>
 
