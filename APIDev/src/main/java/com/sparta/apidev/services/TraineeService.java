@@ -26,7 +26,8 @@ public class TraineeService {
     }
 
     public List<TraineeDTO> getAllTrainees() {
-        return traineeRepository.findAll().stream().map(traineeMapper::toDTO)
+        return traineeRepository.findAll().stream()
+                .map(traineeMapper::toDTO)
                 .collect(Collectors.toList());
     }
 
