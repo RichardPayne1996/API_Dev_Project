@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -11,6 +12,7 @@ public class TraineeDTO {
     private int traineeId;
     private String traineeName;
     private String traineeEmail;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate traineeDob;
     private String traineeTitle;
     private String role;
