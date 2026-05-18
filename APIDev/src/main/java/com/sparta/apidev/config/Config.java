@@ -22,24 +22,31 @@ public class Config {
 
     @Bean
     @Transactional
-    public CommandLineRunner loadData(TrainerRepository trRepo, TraineeRepository teRepo, CourseRepository cRepo, AccountRepository aRepo){
+    public CommandLineRunner loadData(TrainerRepository trRepo, TraineeRepository teRepo, CourseRepository cRepo){
         return args -> {
             System.out.println("Data Loader Running...");
 
             if (trRepo.count() == 0){
-                var trainer1 = new Trainer("Cathy French", LocalDate.of(1990, 1, 1), "cfrench@spartaglobal.com", "Mrs");
-                var trainer2 = new Trainer("Phil Windridge", LocalDate.of(1990,2,2), "pwindridge@spartaglobal.com", "Mr");
+                var trainer1 = new Trainer("Cathy French", LocalDate.of(1990, 1, 1), "cfrench@spartaglobal.com", "Mrs", passwordEncoder().encode("password"));
+                trainer1.setRole(Trainer.Role.TRAINER);
+                var trainer2 = new Trainer("Phil Windridge", LocalDate.of(1990,2,2), "pwindridge@spartaglobal.com", "Mr", passwordEncoder().encode("password"));
+                trainer2.setRole(Trainer.Role.TRAINER);
 
                 trRepo.save(trainer1);
                 trRepo.save(trainer2);
             }
 
             if (teRepo.count() == 0){
-                var trainee1 = new Trainee("Ezra", LocalDate.of(2003, 6, 22), "email.com", "Mr");
-                var trainee2 = new Trainee("Richard", LocalDate.of(1996, 7, 24), "aglobal.com", "Mr");
-                var trainee3 = new Trainee("Jacob", LocalDate.of(2001, 9, 26), "jglobal.com", "Mr");
-                var trainee4 = new Trainee("Mohammed", LocalDate.of(1998, 9, 11), "taglobal.com", "Mr");
-                var trainee5 = new Trainee("Pascal", LocalDate.of(2000, 5, 10), "eobal.com", "Mr");
+                var trainee1 = new Trainee("Ezra", LocalDate.of(2003, 6, 22), "email.com", "Mr", passwordEncoder().encode("password"));
+                trainee1.setRole(Trainee.Role.TRAINEE);
+                var trainee2 = new Trainee("Richard", LocalDate.of(1996, 7, 24), "aglobal.com", "Mr", passwordEncoder().encode("password"));
+                trainee2.setRole(Trainee.Role.TRAINEE);
+                var trainee3 = new Trainee("Jacob", LocalDate.of(2001, 9, 26), "jglobal.com", "Mr", passwordEncoder().encode("password"));
+                trainee3.setRole(Trainee.Role.TRAINEE);
+                var trainee4 = new Trainee("Mohammed", LocalDate.of(1998, 9, 11), "taglobal.com", "Mr", passwordEncoder().encode("password"));
+                trainee4.setRole(Trainee.Role.TRAINEE);
+                var trainee5 = new Trainee("Pascal", LocalDate.of(2000, 5, 10), "eobal.com", "Mr", passwordEncoder().encode("password"));
+                trainee5.setRole(Trainee.Role.TRAINEE);
 
                 teRepo.save(trainee1);
                 teRepo.save(trainee2);
@@ -66,18 +73,9 @@ public class Config {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests(auth -> auth
-                        .anyRequest().authenticated()
-                )
-                .formLogin(form -> form
-                        .defaultSuccessUrl("/", true)
-                        .permitAll()
-                )
-                .logout(logout -> logout
-                        .logoutSuccessUrl("/login?logout")
-                )
+                .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
+                .formLogin(form -> form.defaultSuccessUrl("/", true).permitAll())
                 .csrf(csrf -> csrf.disable());
-
         return http.build();
     }
 }
