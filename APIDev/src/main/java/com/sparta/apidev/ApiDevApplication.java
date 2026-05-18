@@ -22,7 +22,5 @@ public class ApiDevApplication {
             System.out.println(trainer.getTrainerEmail());
         }
 
-
     }
-
 }
