@@ -1,6 +1,7 @@
 package com.sparta.apidev.entities;
 
 import jakarta.persistence.*;
+import org.springframework.context.annotation.Role;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -17,6 +18,15 @@ public class Trainee {
 
     @Column(name = "TraineeName", length = 50)
     private String traineeName;
+
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    public enum Role {
+        TRAINEE
+    }
 
     @Column(name = "traineeDoB", length = 10)
     private LocalDate traineeDoB;
@@ -35,11 +45,12 @@ public class Trainee {
     )
     private Set<Course> traineeCourse = new HashSet<>();
 
-    public Trainee(String name, LocalDate dob, String email, String title) {
+    public Trainee(String name, LocalDate dob, String email, String title, String password) {
         this.traineeName = name;
         this.traineeDoB = dob;
         this.traineeEmail = email;
         this.traineeTitle = title;
+        this.password = password;
     }
 
     public Trainee() {
@@ -98,5 +109,19 @@ public class Trainee {
         return traineeCourse;
     }
 
+    public String getPassword() {
+        return password;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 }
