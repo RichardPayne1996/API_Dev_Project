@@ -173,18 +173,7 @@
 
 <body>
 
-<nav class="sparta-animated-bg">
-
-    <h1>Sparta Academy</h1>
-
-    <ul>
-        <li><a th:href="@{/}">Home</a></li>
-        <li><a th:href="@{/trainees}">Trainees</a></li>
-        <li><a th:href="@{/trainers/view}">Trainers</a></li>
-        <li><a th:href="@{/courses}">Courses</a></li>
-    </ul>
-
-</nav>
+<div th:replace="fragments/header :: header"></div>
 
 <section class="hero">
 
