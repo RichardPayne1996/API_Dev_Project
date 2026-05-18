@@ -1,5 +1,10 @@
 package com.sparta.apidev.dtos;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+
 import java.time.LocalDate;
 
 public class TraineeDTO {
@@ -9,11 +14,15 @@ public class TraineeDTO {
     private LocalDate traineeDob;
     private String traineeTitle;
 
-    public TraineeDTO(int traineeId, String traineeName, String traineeEmail, LocalDate traineeDOB, String traineeTitle) {
+    private boolean trainer;
+
+
+    public TraineeDTO(int traineeId, String traineeName, String traineeEmail, LocalDate traineeDOB, String traineeTitle, boolean trainer) {
         this.traineeName = traineeName;
         this.traineeEmail = traineeEmail;
         this.traineeDob = traineeDOB;
         this.traineeTitle = traineeTitle;
+        this.trainer = true;
     }
     public TraineeDTO() {}
 
@@ -55,5 +64,13 @@ public class TraineeDTO {
 
     public void setTraineeTitle(String traineeTitle) {
         this.traineeTitle = traineeTitle;
+    }
+
+    public boolean getTrainer() {
+        return this.trainer;
+    }
+
+    public void setTrainer(boolean isTrainer) {
+        this.trainer = isTrainer;
     }
 }

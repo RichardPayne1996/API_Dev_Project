@@ -1,5 +1,7 @@
 package com.sparta.apidev.dtos;
 
+
+
 import java.time.LocalDate;
 
 public class TrainerDTO {
@@ -8,13 +10,15 @@ public class TrainerDTO {
     private String trainerEmail;
     private LocalDate trainerDob;
     private String trainerTitle;
+    private boolean trainer;
 
-    public TrainerDTO(int trainerId, String trainerName, String trainerEmail, LocalDate trainerDoB, String trainerTitle) {
+    public TrainerDTO(int trainerId, String trainerName, String trainerEmail, LocalDate trainerDoB, String trainerTitle, boolean trainer) {
         this.trainerId = trainerId;
         this.trainerName = trainerName;
         this.trainerEmail = trainerEmail;
         this.trainerDob = trainerDoB;
         this.trainerTitle = trainerTitle;
+        this.trainer = trainer;
     }
     public TrainerDTO(){}
     
@@ -44,6 +48,14 @@ public class TrainerDTO {
 
     public LocalDate getTrainerDob() {
         return trainerDob;
+    }
+
+    public boolean isTrainer() {
+        return this.trainer;
+    }
+
+    public void setTrainer(boolean isTrainer) {
+        this.trainer = isTrainer;
     }
 
     public void setTrainerDob(LocalDate trainerDoB) {
