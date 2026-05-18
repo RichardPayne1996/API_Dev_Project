@@ -2,6 +2,7 @@ package com.sparta.apidev.services;
 
 import com.sparta.apidev.dtos.TrainerDTO;
 import com.sparta.apidev.dtos.TrainerMapper;
+import com.sparta.apidev.entities.Trainee;
 import com.sparta.apidev.repositories.TrainerRepository;
 import com.sparta.apidev.entities.Trainer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,13 @@ public class TrainerService {
             return true;
         }
         return false;
+    }
+
+    public TrainerDTO getTrainerByName(String name){
+        Trainer trainer = trainerRepository.findByTrainerName(name)
+                .orElseThrow(() -> new RuntimeException("Trainer not found: " + name));
+
+        return trainerMapper.toDTO(trainer);
     }
 
     public TrainerDTO updateTrainer(int iD, TrainerDTO dto) {
