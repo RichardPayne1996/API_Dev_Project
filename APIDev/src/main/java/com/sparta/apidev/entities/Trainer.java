@@ -2,6 +2,8 @@ package com.sparta.apidev.entities;
 
 import jakarta.persistence.*;
 
+import com.sparta.apidev.enums.Role;
+
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,6 +19,11 @@ public class Trainer {
 
     @Column(name = "TrainerName", length = 40)
     private String trainerName;
+
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @Column(name = "trainerDoB")
     private LocalDate trainerDob;
@@ -34,11 +41,13 @@ public class Trainer {
     )
     private Set<Course> teacherCourse = new HashSet<>();
 
-    public Trainer(String trainerName, LocalDate trainerDoB, String email, String title) {
+    public Trainer(String trainerName, LocalDate trainerDoB, String email, String title, String password) {
         this.trainerName = trainerName;
         this.trainerDob = trainerDoB;
         this.trainerEmail = email;
         this.trainerTitle = title;
+        this.password = password;
+        this.role = Role.TRAINER;
     }
 
     public Trainer() {
@@ -86,5 +95,21 @@ public class Trainer {
 
     public Set<Course> getCourses() {
         return this.teacherCourse;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

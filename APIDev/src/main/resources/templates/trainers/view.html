@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <title>View Trainer</title>
@@ -10,6 +11,7 @@
 </head>
 
 <body class="bg-light">
+<div th:replace="fragments/header :: header"></div>
 
 <div class="container mt-5">
 
@@ -52,15 +54,17 @@
 
         <div class="card-footer">
 
-            <a th:href="@{/trainers}"
+            <a th:href="@{/trainers/view}"
                class="btn btn-secondary">
                 Back
             </a>
 
+            <div sec:authorize="hasRole('TRAINER')">
             <a th:href="@{/trainers/{id}/edit(id=${trainer.trainerId})}"
                class="btn btn-warning">
                 Edit
             </a>
+            </div>
 
         </div>
 

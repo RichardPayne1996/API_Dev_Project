@@ -1,15 +1,24 @@
 package com.sparta.apidev.dtos;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 public class TraineeDTO {
     private int traineeId;
     private String traineeName;
     private String traineeEmail;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate traineeDob;
     private String traineeTitle;
+    private String role;
 
-    public TraineeDTO(int traineeId, String traineeName, String traineeEmail, LocalDate traineeDOB, String traineeTitle) {
+
+    public TraineeDTO(int traineeId, String traineeName, String traineeEmail, LocalDate traineeDOB, String traineeTitle, boolean trainer) {
         this.traineeName = traineeName;
         this.traineeEmail = traineeEmail;
         this.traineeDob = traineeDOB;
@@ -55,5 +64,13 @@ public class TraineeDTO {
 
     public void setTraineeTitle(String traineeTitle) {
         this.traineeTitle = traineeTitle;
+    }
+
+    public String getRole() {
+        return this.role;
+    }
+
+    public void setRole(String isTrainer) {
+        this.role = isTrainer;
     }
 }

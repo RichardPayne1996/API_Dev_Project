@@ -10,6 +10,7 @@
 </head>
 
 <body class="bg-light">
+<div th:replace="fragments/header :: header"></div>
 
 <div class="container mt-5">
 
@@ -45,14 +46,11 @@
         </div>
 
         <div class="mb-3">
-
             <label class="form-label">Date of Birth</label>
-
             <input type="date"
                    class="form-control"
                    th:field="*{trainerDob}"
                    required>
-
         </div>
 
         <div class="mb-3">

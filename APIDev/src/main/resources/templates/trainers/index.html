@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <title>All Trainers</title>
@@ -10,6 +11,7 @@
 </head>
 
 <body class="bg-light">
+<div th:replace="fragments/header :: header"></div>
 
 <div class="container mt-5">
 
@@ -17,10 +19,12 @@
 
         <h1>All Trainers</h1>
 
-        <a class="btn btn-primary"
-           th:href="@{/trainees/new}">
-            Add Trainer
-        </a>
+        <div sec:authorize="hasRole('TRAINER')">
+            <a class="btn btn-primary"
+               th:href="@{/trainers/new}">
+                Add Trainer
+            </a>
+        </div>
 
     </div>
 
@@ -60,6 +64,8 @@
                     View
                 </a>
 
+                <span sec:authorize="hasRole('TRAINER')">
+
                 <a class="btn btn-sm btn-warning"
                    th:href="@{/trainers/{id}/edit(id=${t.trainerId})}">
                     Edit
@@ -75,6 +81,8 @@
                     </button>
 
                 </form>
+
+                </span>
 
             </td>
 

@@ -1,5 +1,6 @@
 package com.sparta.apidev.entities;
 
+import com.sparta.apidev.enums.Role;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -18,6 +19,8 @@ public class Trainee {
     @Column(name = "TraineeName", length = 50)
     private String traineeName;
 
+    private String password;
+
     @Column(name = "traineeDoB", length = 10)
     private LocalDate traineeDoB;
 
@@ -27,6 +30,9 @@ public class Trainee {
     @Column(name = "traineeTitle", length = 10)
     private String traineeTitle;
 
+    @Enumerated(EnumType.STRING)
+    private com.sparta.apidev.enums.Role role;
+
     @ManyToMany
     @JoinTable(
             name = "StudentCourse",
@@ -35,11 +41,13 @@ public class Trainee {
     )
     private Set<Course> traineeCourse = new HashSet<>();
 
-    public Trainee(String name, LocalDate dob, String email, String title) {
+    public Trainee(String name, LocalDate dob, String email, String title, String password) {
         this.traineeName = name;
         this.traineeDoB = dob;
         this.traineeEmail = email;
         this.traineeTitle = title;
+        this.password = password;
+        this.role = Role.TRAINEE;
     }
 
     public Trainee() {
@@ -98,5 +106,19 @@ public class Trainee {
         return traineeCourse;
     }
 
+    public String getPassword() {
+        return password;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 }

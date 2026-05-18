@@ -1,7 +1,5 @@
 package com.sparta.apidev;
 
-import com.sparta.apidev.dtos.TrainerDTO;
-import com.sparta.apidev.entities.Trainee;
 import com.sparta.apidev.entities.Trainer;
 import com.sparta.apidev.repositories.CourseRepository;
 import com.sparta.apidev.repositories.TraineeRepository;
@@ -24,7 +22,5 @@ public class ApiDevApplication {
             System.out.println(trainer.getTrainerEmail());
         }
 
-
     }
-
 }
