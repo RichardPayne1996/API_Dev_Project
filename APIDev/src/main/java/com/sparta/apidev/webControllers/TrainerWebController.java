@@ -83,7 +83,7 @@ public class TrainerWebController {
     }
 
 
-    @GetMapping("/delete/{id}")
+    @PostMapping("/{id}/delete")
     public String deleteTrainer(@PathVariable int id) {
 
         trainerService.deleteTrainer(id);
