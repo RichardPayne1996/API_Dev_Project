@@ -3,6 +3,7 @@ package com.sparta.apidev.dtos;
 
 
 import com.sparta.apidev.enums.Role;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -10,6 +11,7 @@ public class TrainerDTO {
     private int trainerId;
     private String trainerName;
     private String trainerEmail;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate trainerDob;
     private String trainerTitle;
     private String role;
@@ -50,6 +52,7 @@ public class TrainerDTO {
     public LocalDate getTrainerDob() {
         return trainerDob;
     }
+
 
     public String getRole() {
         return role;

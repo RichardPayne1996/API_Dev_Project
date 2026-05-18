@@ -2,6 +2,7 @@ package com.sparta.apidev.webControllers;
 
 
 import com.sparta.apidev.dtos.TrainerDTO;
+import com.sparta.apidev.dtos.TrainerMapper;
 import com.sparta.apidev.services.TrainerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,9 +13,12 @@ import org.springframework.web.bind.annotation.*;
 public class TrainerWebController {
 
     private final TrainerService trainerService;
+    private final TrainerMapper trainerMapper;
 
-    public TrainerWebController(TrainerService trainerService) {
+    public TrainerWebController(TrainerService trainerService,
+                                TrainerMapper trainerMapper) {
         this.trainerService = trainerService;
+        this.trainerMapper = trainerMapper;
     }
 
 
@@ -26,6 +30,12 @@ public class TrainerWebController {
         return "trainers/index";
     }
 
+    @PostMapping("/save")
+    public String saveTrainer(@ModelAttribute TrainerDTO trainerDTO){
+        trainerService.saveTrainer(trainerMapper.toEntity(trainerDTO));
+        return "redirect:/trainers/view";
+
+    }
 
     @GetMapping("/{id}")
     public String viewTrainer(@PathVariable int id, Model model) {
@@ -51,10 +61,11 @@ public class TrainerWebController {
     }
 
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/{id}/edit")
     public String editTrainerForm(@PathVariable int id, Model model) {
 
         TrainerDTO trainer = trainerService.getTrainerByID(id);
+        System.out.println(trainer.getTrainerDob());
 
         model.addAttribute("trainer", trainer);
 
@@ -62,7 +73,7 @@ public class TrainerWebController {
     }
 
 
-    @PostMapping("/edit/{id}")
+    @PostMapping("/{id}/update")
     public String updateTrainer(@PathVariable int id,
                                 @ModelAttribute TrainerDTO trainerDTO) {
 
