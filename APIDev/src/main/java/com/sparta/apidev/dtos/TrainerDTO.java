@@ -2,6 +2,8 @@ package com.sparta.apidev.dtos;
 
 
 
+import com.sparta.apidev.enums.Role;
+
 import java.time.LocalDate;
 
 public class TrainerDTO {
@@ -10,7 +12,7 @@ public class TrainerDTO {
     private String trainerEmail;
     private LocalDate trainerDob;
     private String trainerTitle;
-    private boolean trainer;
+    private String role;
 
     public TrainerDTO(int trainerId, String trainerName, String trainerEmail, LocalDate trainerDoB, String trainerTitle, boolean trainer) {
         this.trainerId = trainerId;
@@ -18,7 +20,6 @@ public class TrainerDTO {
         this.trainerEmail = trainerEmail;
         this.trainerDob = trainerDoB;
         this.trainerTitle = trainerTitle;
-        this.trainer = trainer;
     }
     public TrainerDTO(){}
     
@@ -50,12 +51,11 @@ public class TrainerDTO {
         return trainerDob;
     }
 
-    public boolean isTrainer() {
-        return this.trainer;
+    public String getRole() {
+        return role;
     }
-
-    public void setTrainer(boolean isTrainer) {
-        this.trainer = isTrainer;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public void setTrainerDob(LocalDate trainerDoB) {

@@ -1,7 +1,7 @@
 package com.sparta.apidev.entities;
 
+import com.sparta.apidev.enums.Role;
 import jakarta.persistence.*;
-import org.springframework.context.annotation.Role;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -21,13 +21,6 @@ public class Trainee {
 
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
-
-    public enum Role {
-        TRAINEE
-    }
-
     @Column(name = "traineeDoB", length = 10)
     private LocalDate traineeDoB;
 
@@ -36,6 +29,9 @@ public class Trainee {
 
     @Column(name = "traineeTitle", length = 10)
     private String traineeTitle;
+
+    @Enumerated(EnumType.STRING)
+    private com.sparta.apidev.enums.Role role;
 
     @ManyToMany
     @JoinTable(
@@ -51,6 +47,7 @@ public class Trainee {
         this.traineeEmail = email;
         this.traineeTitle = title;
         this.password = password;
+        this.role = Role.TRAINEE;
     }
 
     public Trainee() {

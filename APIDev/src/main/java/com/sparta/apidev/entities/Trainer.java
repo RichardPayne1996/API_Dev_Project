@@ -1,7 +1,8 @@
 package com.sparta.apidev.entities;
 
 import jakarta.persistence.*;
-import org.springframework.context.annotation.Role;
+
+import com.sparta.apidev.enums.Role;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -23,10 +24,6 @@ public class Trainer {
 
     @Enumerated(EnumType.STRING)
     private Role role;
-
-    public enum Role {
-        TRAINER
-    }
 
     @Column(name = "trainerDoB")
     private LocalDate trainerDob;
@@ -50,6 +47,7 @@ public class Trainer {
         this.trainerEmail = email;
         this.trainerTitle = title;
         this.password = password;
+        this.role = Role.TRAINER;
     }
 
     public Trainer() {
