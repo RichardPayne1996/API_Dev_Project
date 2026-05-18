@@ -8,7 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 
 public class TrainerDTO {
-    private int trainerId;
+    private Integer trainerId;
     private String trainerName;
     private String trainerEmail;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -25,7 +25,7 @@ public class TrainerDTO {
     }
     public TrainerDTO(){}
     
-    public int getTrainerId() {
+    public Integer getTrainerId() {
         return trainerId;
     }
 

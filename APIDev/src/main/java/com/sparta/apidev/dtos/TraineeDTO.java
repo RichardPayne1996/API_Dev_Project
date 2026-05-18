@@ -7,15 +7,18 @@ import jakarta.persistence.Enumerated;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 public class TraineeDTO {
-    private int traineeId;
+    private Integer traineeId;
     private String traineeName;
     private String traineeEmail;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate traineeDob;
     private String traineeTitle;
     private String role;
+    private Set<CourseDTO> courses = new HashSet<>();
 
 
     public TraineeDTO(int traineeId, String traineeName, String traineeEmail, LocalDate traineeDOB, String traineeTitle, boolean trainer) {
@@ -26,7 +29,7 @@ public class TraineeDTO {
     }
     public TraineeDTO() {}
 
-    public int getTraineeId() {
+    public Integer getTraineeId() {
         return traineeId;
     }
 
@@ -72,5 +75,13 @@ public class TraineeDTO {
 
     public void setRole(String isTrainer) {
         this.role = isTrainer;
+    }
+
+    public Set<CourseDTO> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(Set<CourseDTO> courses) {
+        this.courses = courses;
     }
 }

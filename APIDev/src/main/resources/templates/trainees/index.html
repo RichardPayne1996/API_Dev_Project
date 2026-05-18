@@ -25,6 +25,12 @@
             Add Trainee
         </a>
 
+        <a class="btn btn-success mt-2"
+           sec:authorize="hasRole('TRAINER')"
+           th:href="@{/enrollment/trainee/new}">
+            Enroll Trainee in Course
+        </a>
+
     </div>
 
     <table class="table table-bordered table-hover bg-white">
@@ -37,6 +43,7 @@
             <th>Name</th>
             <th>Date of Birth</th>
             <th>Email</th>
+            <th>Courses</th>
             <th>Actions</th>
         </tr>
 
@@ -55,6 +62,11 @@
             <td th:text="${t.traineeDob}"></td>
 
             <td th:text="${t.traineeEmail}"></td>
+
+            <td>
+                <span th:each="course : ${t.courses}"
+                      th:text="${course.courseName} + ' '"></span>
+            </td>
 
             <td>
 
