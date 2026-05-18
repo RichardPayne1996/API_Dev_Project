@@ -15,6 +15,10 @@ public class Trainer {
     @Column(name = "TrainerID", nullable = false)
     private int trainerId;
 
+    @OneToOne
+    @JoinColumn(name = "account_id")
+    private Account account;
+
     @Column(name = "TrainerName", length = 40)
     private String trainerName;
 

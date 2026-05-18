@@ -14,7 +14,21 @@ public class Account {
 
     private String password;
 
-    private String role;
+    public enum Role {
+        TRAINER,
+        TRAINEE
+    }
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;
@@ -32,19 +46,11 @@ public class Account {
         this.password = password;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 }

@@ -15,6 +15,10 @@ public class Trainee {
     @Column(name = "TraineeID", nullable = false)
     private int traineeID;
 
+    @OneToOne
+    @JoinColumn(name = "account_id")
+    private Account account;
+
     @Column(name = "TraineeName", length = 50)
     private String traineeName;
 
