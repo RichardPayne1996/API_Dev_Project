@@ -1,4 +1,4 @@
-<header th:fragment="header(title, subtitle)" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+   <header xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <nav class="sparta-animated-bg" >
 
         <h1>Sparta Academy</h1>
@@ -11,9 +11,4 @@
         </ul>
 
     </nav>
-
-    <section class="hero"><div class="hero-content">
-        <h2 th:text="${title}"></h2>
-        <p th:text="${subtitle}"></p>
-    </div></section>
 </header>
