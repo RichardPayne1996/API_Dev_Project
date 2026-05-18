@@ -70,5 +70,12 @@ public class TraineeService {
 
         return traineeMapper.toDTO(updated);
     }
+    public TraineeDTO getTraineeByName(String name) {
+
+        Trainee trainee = traineeRepository.findByTraineeName(name)
+                .orElseThrow(() -> new RuntimeException("Trainee not found: " + name));
+
+        return traineeMapper.toDTO(trainee);
+    }
 
 }
