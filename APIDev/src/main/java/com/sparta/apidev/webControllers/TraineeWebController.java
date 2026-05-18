@@ -42,6 +42,16 @@ public class TraineeWebController {
 
         return "trainees/view";
     }
+    @GetMapping("/{id}/profile")
+    public String profile(@PathVariable int id, Model model) {
+
+        model.addAttribute(
+                "trainee",
+                traineeService.getTraineeById(id)
+        );
+
+        return "trainees/profile";
+    }
 
     // SHOW CREATE FORM
     @GetMapping("/new")
