@@ -102,7 +102,7 @@ public class Trainee {
         traineeCourse.remove(course);
     }
 
-    public Set<Course> getCourses() {
+    public Set<Course> getTraineeCourse() {
         return traineeCourse;
     }
 
