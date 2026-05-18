@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<body>
-
-<header th:fragment="header">
-    <nav class="sparta-animated-bg">
+   <header xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <nav class="sparta-animated-bg" >
 
         <h1>Sparta Academy</h1>
 
@@ -13,9 +9,9 @@
             <li><a th:href="@{/trainers/view}">Trainers</a></li>
             <li><a th:href="@{/courses}">Courses</a></li>
         </ul>
+        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post" style="display:inline;">
+            <button type="submit" class="btn btn-light btn-sm">Logout</button>
+        </form>
 
     </nav>
 </header>
-
-</body>
-</html>
