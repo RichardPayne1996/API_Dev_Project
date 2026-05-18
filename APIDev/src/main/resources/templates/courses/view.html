@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <title>View Course</title>
@@ -49,11 +50,12 @@
                class="btn btn-secondary">
                 Back
             </a>
-
+            <div sec:authorize="hasRole('TRAINER')">
             <a th:href="@{/courses/{id}/edit(id=${course.courseId})}"
                class="btn btn-warning">
                 Edit
             </a>
+            </div>
 
         </div>
 
