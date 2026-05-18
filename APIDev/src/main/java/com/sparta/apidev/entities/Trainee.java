@@ -1,5 +1,6 @@
 package com.sparta.apidev.entities;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -27,6 +28,9 @@ public class Trainee {
     @Column(name = "traineeTitle", length = 10)
     private String traineeTitle;
 
+    @Column(name = "Role", length = 50)
+    private boolean trainer;
+
     @ManyToMany
     @JoinTable(
             name = "StudentCourse",
@@ -35,11 +39,12 @@ public class Trainee {
     )
     private Set<Course> traineeCourse = new HashSet<>();
 
-    public Trainee(String name, LocalDate dob, String email, String title) {
+    public Trainee(String name, LocalDate dob, String email, String title, boolean trainer) {
         this.traineeName = name;
         this.traineeDoB = dob;
         this.traineeEmail = email;
         this.traineeTitle = title;
+        this.trainer = trainer;
     }
 
     public Trainee() {
@@ -84,6 +89,14 @@ public class Trainee {
 
     public void setTraineeTitle(String title) {
         this.traineeTitle = title;
+    }
+
+    public boolean getTrainer() {
+        return this.trainer;
+    }
+
+    public void setIsTrainer(boolean isTrainer) {
+        this.trainer = isTrainer;
     }
 
     public void addCourse(Course course) {
