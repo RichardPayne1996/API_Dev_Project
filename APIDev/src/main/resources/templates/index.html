@@ -12,6 +12,16 @@
 
 <div class="container">
 
+    <h2 class="section-title">Available Courses</h2>
+
+    <div class="card">
+        <h3>My Courses</h3>
+        <p>View all available courses.</p>
+
+        <a th:href="@{/courses}">
+            View Courses
+        </a>
+    </div>
     <h2 class="section-title">Trainee Access</h2>
 
     <div class="card-grid">
@@ -19,19 +29,17 @@
         <div class="card">
             <h3>My Profile</h3>
             <p>View your trainee information including assigned course.</p>
-            <a th:href="@{/trainees/{id}(id=${traineeId})}">View My Info</a>
-        </div>
-
-    </div>
-
-    <h2 class="section-title">Available Courses</h2>
 
     <div class="card-grid">
 
         <div class="card">
             <h3>View Courses</h3>
             <p>Browse all available courses in the academy.</p>
-            <a th:href="@{/courses/view}">View Courses</a>
+            
+            <a th:if="${trainee != null}"
+               th:href="@{/trainees/{id}/profile(id=${trainee.traineeId})}">
+                View My Info
+            </a>
         </div>
 
     </div>
