@@ -1,6 +1,7 @@
 package com.sparta.apidev.entities;
 
 import jakarta.persistence.*;
+import org.springframework.context.annotation.Role;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -18,11 +19,17 @@ public class Trainer {
     @Column(name = "TrainerName", length = 40)
     private String trainerName;
 
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    public enum Role {
+        TRAINER
+    }
+
     @Column(name = "trainerDoB")
     private LocalDate trainerDob;
-
-    @Column(name = "Role", length = 50)
-    private boolean trainer;
 
     @Column(name = "Email", length = 60)
     private String trainerEmail;
@@ -37,12 +44,12 @@ public class Trainer {
     )
     private Set<Course> teacherCourse = new HashSet<>();
 
-    public Trainer(String trainerName, LocalDate trainerDoB, String email, String title, boolean trainer) {
+    public Trainer(String trainerName, LocalDate trainerDoB, String email, String title, String password) {
         this.trainerName = trainerName;
         this.trainerDob = trainerDoB;
         this.trainerEmail = email;
         this.trainerTitle = title;
-        this.trainer = trainer;
+        this.password = password;
     }
 
     public Trainer() {
@@ -88,15 +95,23 @@ public class Trainer {
         this.trainerTitle = title;
     }
 
-    public boolean isTrainer() {
-        return this.trainer;
-    }
-
-    public void setTrainer(boolean isTrainer) {
-        this.trainer = isTrainer;
-    }
-
     public Set<Course> getCourses() {
         return this.teacherCourse;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

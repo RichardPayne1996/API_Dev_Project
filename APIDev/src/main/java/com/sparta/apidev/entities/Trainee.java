@@ -1,7 +1,7 @@
 package com.sparta.apidev.entities;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
+import org.springframework.context.annotation.Role;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -19,6 +19,15 @@ public class Trainee {
     @Column(name = "TraineeName", length = 50)
     private String traineeName;
 
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    public enum Role {
+        TRAINEE
+    }
+
     @Column(name = "traineeDoB", length = 10)
     private LocalDate traineeDoB;
 
@@ -28,9 +37,6 @@ public class Trainee {
     @Column(name = "traineeTitle", length = 10)
     private String traineeTitle;
 
-    @Column(name = "Role", length = 50)
-    private boolean trainer;
-
     @ManyToMany
     @JoinTable(
             name = "StudentCourse",
@@ -39,12 +45,12 @@ public class Trainee {
     )
     private Set<Course> traineeCourse = new HashSet<>();
 
-    public Trainee(String name, LocalDate dob, String email, String title, boolean trainer) {
+    public Trainee(String name, LocalDate dob, String email, String title, String password) {
         this.traineeName = name;
         this.traineeDoB = dob;
         this.traineeEmail = email;
         this.traineeTitle = title;
-        this.trainer = trainer;
+        this.password = password;
     }
 
     public Trainee() {
@@ -91,14 +97,6 @@ public class Trainee {
         this.traineeTitle = title;
     }
 
-    public boolean getTrainer() {
-        return this.trainer;
-    }
-
-    public void setIsTrainer(boolean isTrainer) {
-        this.trainer = isTrainer;
-    }
-
     public void addCourse(Course course) {
         traineeCourse.add(course);
     }
@@ -111,5 +109,19 @@ public class Trainee {
         return traineeCourse;
     }
 
+    public String getPassword() {
+        return password;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 }
