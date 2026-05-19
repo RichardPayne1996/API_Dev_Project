@@ -9,7 +9,7 @@
             <li sec:authorize="isAuthenticated()"><a th:href="@{/trainers/view}">Trainers</a></li>
             <li sec:authorize="isAuthenticated()"><a th:href="@{/courses}">Courses</a></li>
             <li sec:authorize="isAuthenticated()">
-               <a th:href="@{/logout}">Logout</a>
+               <a th:href="@{/logout}" id="logout">Logout</a>
         </li>
         </ul>
 
