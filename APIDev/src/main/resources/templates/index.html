@@ -22,6 +22,7 @@
         <a th:href="@{/courses}">
             View Courses
         </a>
+
     </div>
 
     <div sec:authorize="hasRole('TRAINEE')">
@@ -63,7 +64,7 @@
             <div class="card">
                 <h3>Manage Trainers</h3>
                 <p>View and manage trainer information.</p>
-                <a th:href="@{/trainers/view}">Open</a>
+                <a th:href="@{/trainers}">Open</a>
             </div>
         </div>
     </div>
