@@ -1,8 +1,14 @@
 <header th:fragment="header(title, subtitle)" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <nav class="sparta-animated-bg" >
-
-        <h1>Sparta Global</h1>
-
+        <div style="display:flex; align-items:center; gap:20px;">
+            <h1>Sparta Global</h1>
+        <a sec:authorize="hasRole('TRAINEE')">
+            Welcome <span sec:authentication="principal.username"></span>, Sparta Trainee
+        </a>
+        <a sec:authorize="hasRole('TRAINER')">
+            Welcome <span sec:authentication="principal.username"></span>, Sparta Trainer
+        </a>
+        </div>
         <ul>
             <li sec:authorize="isAuthenticated()"><a th:href="@{/}">Home</a></li>
             <li sec:authorize="isAuthenticated()"><a th:href="@{/trainees}">Trainees</a></li>
