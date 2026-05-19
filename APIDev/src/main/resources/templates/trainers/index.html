@@ -15,8 +15,9 @@
 
     <div class="d-flex justify-content-between align-items-center mb-4">
 
-        <h1>All Trainers</h1>
+        <h1 class="mb-0">All Trainers</h1>
 
+        <div class="d-flex gap-2">
         <a class="btn btn-primary"
            th:href="@{/trainers/new}" sec:authorize="hasRole('TRAINER')">
             Add Trainer
@@ -27,11 +28,22 @@
            th:href="@{/enrollment/trainer/new}">
             Assign Trainer to Course
         </a>
+        </div>
 
     </div>
-    <form th:action="@{/trainers/search}" method="get">
-        <input type="text" name="name" placeholder="Search trainers...">
-        <button type="submit">Search</button>
+
+    <form th:action="@{/trainers/search}" method="get" class="mb-3">
+        <div class="d-flex">
+        <input type="text"
+               name="name"
+               th:value="${searchName}"
+               placeholder="Search trainers by name"
+               class="form-control me-2" />
+
+        <button type="submit" class="btn btn-primary">
+            Search
+        </button>
+        </div>
     </form>
 
     <table class="table table-bordered table-hover bg-white">
