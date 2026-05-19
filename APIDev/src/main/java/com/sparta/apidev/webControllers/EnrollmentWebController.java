@@ -46,15 +46,6 @@ public class EnrollmentWebController {
         return "redirect:/trainees";
     }
 
-    // Show form to remove trainee from course
-    @GetMapping("/trainee/remove")
-    public String showRemoveTraineeForm(Model model) {
-        model.addAttribute("trainees", traineeService.getAllTrainees());
-        model.addAttribute("courses", courseService.getAllCourses());
-        model.addAttribute("traineeDTO", new TraineeDTO());
-        return "enrollment/remove-trainee";
-    }
-
     // Remove trainee from course
     @PostMapping("/trainee/remove")
     public String removeTrainee(@ModelAttribute TraineeDTO traineeDTO,
