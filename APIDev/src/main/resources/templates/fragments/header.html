@@ -8,6 +8,13 @@
             <li><a th:href="@{/trainees}">Trainees</a></li>
             <li><a th:href="@{/trainers/view}">Trainers</a></li>
             <li><a th:href="@{/courses}">Courses</a></li>
+            <li sec:authorize="isAuthenticated()">
+                <form th:action="@{/logout}" method="post" class="nav-button" id="logout">
+                    <button type="submit">
+                        Logout
+                    </button>
+                </form>
+        </li>
         </ul>
 
     </nav>
