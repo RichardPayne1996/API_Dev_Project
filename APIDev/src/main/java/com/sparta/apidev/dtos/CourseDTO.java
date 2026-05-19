@@ -8,17 +8,21 @@ public class CourseDTO {
 
     private String description;
 
+    private int duration;
+
     public CourseDTO() {
     }
 
     public CourseDTO(
             Integer courseId,
             String courseName,
-            String description
+            String description,
+            int duration
     ) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.description = description;
+        this.duration = duration;
     }
 
     public Integer getCourseId() {
@@ -43,5 +47,13 @@ public class CourseDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 }
