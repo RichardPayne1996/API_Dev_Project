@@ -1,6 +1,8 @@
-# Sparta Academy REST API
+# Sparta Academy Full Stack Management System
 
-A production-ready REST API built using Spring Boot for managing trainers, trainees, and courses within Sparta Academy.
+A full-stack Spring Boot academy management system built using REST APIs, Spring MVC, Thymeleaf, and Spring Security.
+
+The application allows trainers and trainees to manage academy data through both REST endpoints and a web dashboard interface.
 
 ---
 
@@ -38,21 +40,34 @@ The API follows RESTful principles and includes:
 | JUnit 5 | Unit Testing |
 | Mockito | Mock Testing |
 | Git & GitHub | Version Control |
+| Spring Security | Authentication & Authorization |
+| Thymeleaf | Server-side HTML Rendering |
+| Bootstrap | Frontend Styling |
+| Spring MVC | Web Layer |
 
 ---
 
 ## Project Structure
 
 ```text
-src/main/java/com/sparta/academy
+src/main/java/com/sparta/apidev
 
+├── config
 ├── controllers
+├── webControllers
 ├── services
 ├── repositories
 ├── entities
 ├── dtos
-├── exceptions
-├── configs
+├── enums
+
+src/main/resources
+
+├── templates
+│   ├── trainees
+│   ├── trainers
+│   ├── courses
+│   └── fragments
 ```
 
 ## Features
@@ -76,6 +91,91 @@ src/main/java/com/sparta/academy
 - Delete course
 - Enrol trainees
 - Remove trainees from courses
+
+## Web Features
+
+### Authentication
+- Custom login page
+- Spring Security integration
+- BCrypt password encryption
+- Role-based authorization
+
+### Role-Based Dashboard
+- Trainer dashboard
+- Trainee dashboard
+- Dynamic content rendering with Thymeleaf Security
+
+### Thymeleaf Web Interface
+- View trainees
+- View trainers
+- View courses
+- Create/Edit/Delete records
+- Responsive dashboard UI
+
+## Frontend Features
+
+### Dashboard
+- Animated landing page
+- Responsive card layout
+- Role-based navigation
+- Secure authentication
+
+### Thymeleaf Pages
+- Trainee Management Pages
+- Trainer Management Pages
+- Course Management Pages
+- Custom Login Page
+
+## Security
+
+Spring Security is implemented to provide:
+
+- Authentication
+- Authorization
+- Role-based access control
+- Secure password encryption using BCrypt
+
+### Roles
+
+| Role | Permissions |
+|---|---|
+| TRAINER | Full CRUD access |
+| TRAINEE | View-only trainee access |
+
+### Login
+
+The application uses a custom Thymeleaf login page.
+
+Default demo credentials:
+
+```text
+Username: cfrench@spartaglobal.com
+Password: password
+```
+
+## Web Layer
+
+The application includes a full MVC web layer using:
+
+- Spring MVC
+- Thymeleaf
+- Bootstrap
+
+### Web Controllers
+
+```text
+/trainees
+/trainers
+/courses
+```
+
+### REST API Controllers
+
+```text
+/api/trainees
+/api/trainers
+/api/courses
+```
 
 ## API Documentation
 **Swagger UI:**
@@ -552,15 +652,21 @@ jobs:
 
 ## Screenshots
 
-### Swagger UI or Postman
-<img width="1400" height="843" alt="Screenshot 2026-05-11 100247" src="https://github.com/user-attachments/assets/d8f338c2-bdc4-48d6-abfe-9d190482768e" />
+### Login Page
+<img width="1881" height="855" alt="image" src="https://github.com/user-attachments/assets/4f1c9752-0d67-4e23-85ff-c03962bed9c9" />
 
 
-### GitHub Project Board
-_Add screenshot later_
+### Dashboard
 
-### Database Schema
-_Add screenshot later_
+
+### Trainee Management
+_Add screenshot_
+
+### Course Management
+_Add screenshot_
+
+### Swagger Documentation
+_Add screenshot_
 
 ---
 

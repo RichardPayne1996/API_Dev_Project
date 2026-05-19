@@ -62,4 +62,10 @@ public class CourseService {
 
         return courseMapper.toDTO(updated);
     }
+    public List<CourseDTO> searchCoursesByName(String name) {
+        List<Course> courses = courseRepository.findByCourseNameContainingIgnoreCase(name);
+        return courses.stream()
+                .map(courseMapper::toDTO)
+                .toList();
+    }
 }

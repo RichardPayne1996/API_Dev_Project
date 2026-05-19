@@ -9,6 +9,7 @@ import java.util.Optional;
 
 public interface TraineeRepository extends JpaRepository<Trainee, Integer> {
     Optional<Trainee> findByTraineeName(String traineeName);
+    List<Trainee> findByTraineeNameContainingIgnoreCase(String traineeName);
 
 
 }

@@ -32,6 +32,17 @@
         </a>
         </div>
     </div>
+    <form th:action="@{/trainees/search}" method="get" class="mb-3">
+        <input type="text"
+               name="name"
+               th:value="${searchName}"
+               placeholder="Search trainees by name"
+               class="form-control" />
+
+        <button type="submit" class="btn btn-primary mt-2">
+            Search
+        </button>
+    </form>
 
     <table class="table table-bordered table-hover bg-white">
 

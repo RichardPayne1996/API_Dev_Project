@@ -10,7 +10,7 @@
 </head>
 
 <body class="bg-light">
-<div th:replace="fragments/header :: header"></div>
+<div th:replace="fragments/header :: header('Trainer Management Portal','Update Trainer')"></div>
 
 <div class="container mt-5">
 
@@ -69,7 +69,7 @@
             Update
         </button>
 
-        <a th:href="@{/trainers}"
+        <a th:href="@{/trainers/view}"
            class="btn btn-secondary">
             Cancel
         </a>
