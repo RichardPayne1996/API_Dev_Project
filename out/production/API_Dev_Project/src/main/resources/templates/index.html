@@ -32,16 +32,12 @@
             <div class="card">
                 <h3>My Profile</h3>
                 <p>View your trainee information including assigned course.</p>
-            </div>
-
-            <div class="card">
-                <h3>View Courses</h3>
-                <p>Browse all available courses in the academy.</p>
                 <a th:if="${trainee != null}"
-                   th:href="@{/trainees/{id}/profile(id=${trainee.traineeId})}">
+                   th:href="@{/trainees/{id}(id=${trainee.traineeId})}">
                     View My Info
                 </a>
             </div>
+
         </div>
     </div>
 
