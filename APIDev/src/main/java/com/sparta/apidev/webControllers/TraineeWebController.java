@@ -1,6 +1,7 @@
 package com.sparta.apidev.webControllers;
 
 import com.sparta.apidev.dtos.TraineeDTO;
+import com.sparta.apidev.services.EnrollmentService;
 import com.sparta.apidev.services.TraineeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,9 +12,11 @@ import org.springframework.web.bind.annotation.*;
 public class TraineeWebController {
 
     private final TraineeService traineeService;
+    private final EnrollmentService enrollmentService;
 
-    public TraineeWebController(TraineeService traineeService) {
+    public TraineeWebController(TraineeService traineeService, EnrollmentService enrollmentService) {
         this.traineeService = traineeService;
+        this.enrollmentService = enrollmentService;
     }
 
     // VIEW ALL
@@ -111,6 +114,14 @@ public class TraineeWebController {
 
         traineeService.deleteTrainee(id);
 
+        return "redirect:/trainees";
+    }
+
+    // Remove trainee from course
+    @PostMapping("/remove")
+    public String removeTrainee(@ModelAttribute TraineeDTO traineeDTO) {
+        Integer courseId = traineeDTO.getSelectedCourseId();
+        enrollmentService.removeTraineeFromCourse(traineeDTO, courseId);
         return "redirect:/trainees";
     }
 }
