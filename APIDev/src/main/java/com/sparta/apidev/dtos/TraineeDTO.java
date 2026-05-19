@@ -19,6 +19,7 @@ public class TraineeDTO {
     private String traineeTitle;
     private String role;
     private Set<CourseDTO> courses = new HashSet<>();
+    private Integer selectedCourseId;
 
 
     public TraineeDTO(int traineeId, String traineeName, String traineeEmail, LocalDate traineeDOB, String traineeTitle, boolean trainer) {
@@ -33,7 +34,7 @@ public class TraineeDTO {
         return traineeId;
     }
 
-    public void setTraineeId(int traineeId) {
+    public void setTraineeId(Integer traineeId) {
         this.traineeId = traineeId;
     }
 
@@ -83,5 +84,13 @@ public class TraineeDTO {
 
     public void setCourses(Set<CourseDTO> courses) {
         this.courses = courses;
+    }
+
+    public Integer getSelectedCourseId() {
+        return selectedCourseId;
+    }
+
+    public void setSelectedCourseId(Integer selectedCourseId) {
+        this.selectedCourseId = selectedCourseId;
     }
 }

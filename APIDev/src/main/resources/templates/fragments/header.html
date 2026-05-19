@@ -1,19 +1,15 @@
 <header th:fragment="header(title, subtitle)" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <nav class="sparta-animated-bg" >
 
-        <h1>Sparta Academy</h1>
+        <h1>Sparta Global</h1>
 
         <ul>
-            <li><a th:href="@{/}">Home</a></li>
-            <li><a th:href="@{/trainees}">Trainees</a></li>
-            <li><a th:href="@{/trainers/view}">Trainers</a></li>
-            <li><a th:href="@{/courses}">Courses</a></li>
+            <li sec:authorize="isAuthenticated()"><a th:href="@{/}">Home</a></li>
+            <li sec:authorize="isAuthenticated()"><a th:href="@{/trainees}">Trainees</a></li>
+            <li sec:authorize="isAuthenticated()"><a th:href="@{/trainers/view}">Trainers</a></li>
+            <li sec:authorize="isAuthenticated()"><a th:href="@{/courses}">Courses</a></li>
             <li sec:authorize="isAuthenticated()">
-                <form th:action="@{/logout}" method="post" class="nav-button" id="logout">
-                    <button type="submit">
-                        Logout
-                    </button>
-                </form>
+               <a th:href="@{/logout}">Logout</a>
         </li>
         </ul>
 
