@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/head :: head('Sparta Academy Portal')"></head>
 
 <body class="bg-light">
@@ -22,50 +23,49 @@
             View Courses
         </a>
     </div>
-    <h2 class="section-title">Trainee Access</h2>
 
-    <div class="card-grid">
+    <div sec:authorize="hasRole('TRAINEE')">
+        <h2 class="section-title">Trainee Access</h2>
 
-        <div class="card">
-            <h3>My Profile</h3>
-            <p>View your trainee information including assigned course.</p>
+        <div class="card-grid">
+            <div class="card">
+                <h3>My Profile</h3>
+                <p>View your trainee information including assigned course.</p>
+            </div>
 
-    <div class="card-grid">
-
-        <div class="card">
-            <h3>View Courses</h3>
-            <p>Browse all available courses in the academy.</p>
-            
-            <a th:if="${trainee != null}"
-               th:href="@{/trainees/{id}/profile(id=${trainee.traineeId})}">
-                View My Info
-            </a>
+            <div class="card">
+                <h3>View Courses</h3>
+                <p>Browse all available courses in the academy.</p>
+                <a th:if="${trainee != null}"
+                   th:href="@{/trainees/{id}/profile(id=${trainee.traineeId})}">
+                    View My Info
+                </a>
+            </div>
         </div>
-
     </div>
 
-    <h2 class="section-title">Trainer Features</h2>
+    <div sec:authorize="hasRole('TRAINER')">
+        <h2 class="section-title">Trainer Features</h2>
 
-    <div class="card-grid">
+        <div class="card-grid">
+            <div class="card">
+                <h3>Manage Trainees</h3>
+                <p>View, filter, add, edit and remove trainee records.</p>
+                <a th:href="@{/trainees/view}">Open</a>
+            </div>
 
-        <div class="card">
-            <h3>Manage Trainees</h3>
-            <p>View, filter, add, edit and remove trainee records.</p>
-            <a th:href="@{/trainees/view}">Open</a>
+            <div class="card">
+                <h3>Manage Courses</h3>
+                <p>Create and maintain course information.</p>
+                <a th:href="@{/courses/view}">Open</a>
+            </div>
+
+            <div class="card">
+                <h3>Manage Trainers</h3>
+                <p>View and manage trainer information.</p>
+                <a th:href="@{/trainers/view}">Open</a>
+            </div>
         </div>
-
-        <div class="card">
-            <h3>Manage Courses</h3>
-            <p>Create and maintain course information.</p>
-            <a th:href="@{/courses/view}">Open</a>
-        </div>
-
-        <div class="card">
-            <h3>Manage Trainers</h3>
-            <p>View and manage trainer information.</p>
-            <a th:href="@{/trainers/view}">Open</a>
-        </div>
-
     </div>
 
 </div>
