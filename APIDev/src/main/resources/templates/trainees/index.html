@@ -20,7 +20,7 @@
         <h1>All Trainees</h1>
 
         <a class="btn btn-primary"
-           th:href="@{/trainees/new}">
+           th:href="@{/trainees/new}" sec:authorize="hasRole('TRAINER')">
             Add Trainee
         </a>
 
@@ -67,7 +67,7 @@
                       th:text="${course.courseName} + ' '"></span>
             </td>
 
-            <td>
+            <td sec:authorize="hasRole('TRAINER')">
 
                 <a class="btn btn-sm btn-info"
                    th:href="@{/trainees/{id}(id=${t.traineeId})}">
@@ -84,7 +84,7 @@
                       class="d-inline">
 
                     <button type="submit"
-                            class="btn btn-sm btn-danger">
+                            class="btn btn-sm btn-danger delete">
                         Delete
                     </button>
                 </form>
@@ -97,5 +97,6 @@
 <footer class="sparta-animated-bg">
     Sparta Academy Management System
 </footer>
+<script th:src="@{/js/handling.js}"></script>
 </body>
 </html>

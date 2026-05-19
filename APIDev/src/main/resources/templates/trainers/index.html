@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="fragments/head :: head('Trainer Management Portal')"></head>
 
@@ -53,7 +53,7 @@
 
             <td th:text="${t.trainerEmail}"></td>
 
-            <td>
+            <td sec:authorize="hasRole('TRAINER')">
 
                 <a class="btn btn-sm btn-info"
                    th:href="@{/trainers/{id}(id=${t.trainerId})}">
