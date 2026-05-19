@@ -101,4 +101,14 @@ public class TrainerWebController {
         enrollmentService.removeTrainerFromCourse(trainerDTO, courseId);
         return "redirect:/trainers/view";
     }
+    @GetMapping("/search")
+    public String searchTrainers(@RequestParam String name, Model model) {
+
+        model.addAttribute(
+                "trainers",
+                trainerService.searchTrainersByName(name)
+        );
+
+        return "trainers/index";
+    }
 }
