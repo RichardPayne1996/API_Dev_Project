@@ -34,8 +34,9 @@ public class HomeWebController {
             model.addAttribute("trainee", trainee);
         } catch (RuntimeException e) {
             TrainerDTO trainer = trainerService.getTrainerByName(username);
-            model.addAttribute("trainee", trainer);
+            model.addAttribute("trainer", trainer);
         }
+
 
         return "index";
     }
