@@ -106,8 +106,8 @@ public class Config {
             }
 
             if (cRepo.count() == 0){
-                var course1 = new Course("TECH606", "Java Developers");
-                var course2 = new Course("TECH605", "Java Testers");
+                var course1 = new Course("TECH606", "Java Developers", 8);
+                var course2 = new Course("TECH605", "Java Testers", 7);
 
                 cRepo.save(course1);
                 cRepo.save(course2);

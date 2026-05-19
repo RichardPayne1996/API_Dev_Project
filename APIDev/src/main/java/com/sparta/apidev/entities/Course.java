@@ -20,15 +20,19 @@ public class Course {
     @Column(name = "description", length = 255)
     private String description;
 
+    @Column(name = "duration", length =255)
+    private int duration;
+
     @ManyToMany(mappedBy = "traineeCourse")
     private Set<Trainee> trainees = new HashSet<>();
 
     @ManyToMany(mappedBy = "teacherCourse")
     private Set<Trainer> trainers = new HashSet<>();
 
-    public Course(String courseName, String description) {
+    public Course(String courseName, String description,  int duration) {
         this.courseName = courseName;
         this.description = description;
+        this.duration = duration;
     }
 
     public Course(){}
@@ -58,6 +62,14 @@ public class Course {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
     }
 
     // trainees

@@ -29,7 +29,7 @@ public interface TrainerMapper {
     default Set<CourseDTO> mapCourses(Set<Course> courses) {
         if (courses == null) return null;
         return courses.stream()
-                .map(c -> new CourseDTO(c.getId(), c.getCourseName(), c.getDescription()))
+                .map(c -> new CourseDTO(c.getId(), c.getCourseName(), c.getDescription(), c.getDuration()))
                 .collect(Collectors.toSet());
     }
 }
