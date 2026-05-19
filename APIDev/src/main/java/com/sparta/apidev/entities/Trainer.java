@@ -93,8 +93,16 @@ public class Trainer {
         this.trainerTitle = title;
     }
 
-    public Set<Course> getCourses() {
-        return this.teacherCourse;
+    public void addCourse(Course course) {
+        teacherCourse.add(course);
+    }
+
+    public void dropCourse(Course course) {
+        teacherCourse.remove(course);
+    }
+
+    public Set<Course> getTeacherCourse() {
+        return teacherCourse;
     }
 
     public String getPassword() {

@@ -6,6 +6,8 @@ import com.sparta.apidev.enums.Role;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 public class TrainerDTO {
     private Integer trainerId;
@@ -15,6 +17,8 @@ public class TrainerDTO {
     private LocalDate trainerDob;
     private String trainerTitle;
     private String role;
+    private Set<CourseDTO> courses = new HashSet<>();
+    private Integer selectedCourseId;
 
     public TrainerDTO(int trainerId, String trainerName, String trainerEmail, LocalDate trainerDoB, String trainerTitle, boolean trainer) {
         this.trainerId = trainerId;
@@ -72,4 +76,22 @@ public class TrainerDTO {
     public void setTrainerTitle(String trainerTitle) {
         this.trainerTitle = trainerTitle;
     }
+
+    public Set<CourseDTO> getCourses() {
+        return courses;
+    }
+
+    public void setCourses(Set<CourseDTO> courses) {
+        this.courses = courses;
+    }
+
+    public Integer getSelectedCourseId() {
+        return selectedCourseId;
+    }
+
+    public void setSelectedCourseId(Integer selectedCourseId){
+        this.selectedCourseId = selectedCourseId;
+    }
+
+
 }

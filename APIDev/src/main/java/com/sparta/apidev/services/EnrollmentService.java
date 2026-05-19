@@ -67,7 +67,7 @@ public class EnrollmentService {
         Course course = courseRepo.findById(courseId)
                 .orElseThrow(() -> new RuntimeException("Course not found"));
 
-        trainer.getCourses().add(course);
+        trainer.getTeacherCourse().add(course);
         course.getTrainers().add(trainer);
 
         trainerRepo.save(trainer);
@@ -83,7 +83,7 @@ public class EnrollmentService {
         Course course = courseRepo.findById(courseId)
                 .orElseThrow(() -> new RuntimeException("Course not found"));
 
-        trainer.getCourses().remove(course);
+        trainer.getTeacherCourse().remove(course);
         course.getTrainers().remove(trainer);
 
         trainerRepo.save(trainer);
