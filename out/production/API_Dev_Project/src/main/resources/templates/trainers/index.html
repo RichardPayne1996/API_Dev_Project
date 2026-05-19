@@ -18,7 +18,7 @@
         <h1>All Trainers</h1>
 
         <a class="btn btn-primary"
-           th:href="@{/trainers/new}">
+           th:href="@{/trainers/new}" sec:authorize="hasRole('TRAINER')">
             Add Trainer
         </a>
 
