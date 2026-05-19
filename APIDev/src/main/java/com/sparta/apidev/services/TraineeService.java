@@ -77,5 +77,13 @@ public class TraineeService {
 
         return traineeMapper.toDTO(trainee);
     }
+    public List<TraineeDTO> searchTraineesByName(String name) {
+
+        return traineeRepository
+                .findByTraineeNameContainingIgnoreCase(name)
+                .stream()
+                .map(traineeMapper::toDTO)
+                .toList();
+    }
 
 }

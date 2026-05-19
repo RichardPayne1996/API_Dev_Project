@@ -94,4 +94,14 @@ public class CourseWebController {
         courseService.deleteCourse(id);
         return "redirect:/courses";
     }
+    @GetMapping("/search")
+    public String searchCourses(@RequestParam String name, Model model) {
+
+        model.addAttribute(
+                "courses",
+                courseService.searchCoursesByName(name)
+        );
+
+        return "courses/index";
+    }
 }

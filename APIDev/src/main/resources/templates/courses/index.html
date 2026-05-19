@@ -25,6 +25,10 @@
         </a>
 
     </div>
+    <form th:action="@{/courses/search}" method="get">
+        <input type="text" name="name" placeholder="Search courses...">
+        <button type="submit">Search</button>
+    </form>
 
     <table class="table table-bordered table-hover bg-white">
 
