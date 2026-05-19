@@ -10,7 +10,9 @@
 </head>
 
 <body class="bg-light">
-<div th:replace="fragments/header :: header"></div>
+<div th:replace="fragments/header :: header(
+    'Trainer Management Portal',
+    'Edit trainer details')"></div>
 
 <div class="container mt-5">
 
@@ -75,6 +77,24 @@
         </a>
 
     </form>
+    <div class="mt-5">
+        <h2>Assigned Courses</h2>
+        <div th:if="${trainer.courses.isEmpty()}" class="text-muted">
+            No courses assigned.
+        </div>
+        <ul class="list-group" th:if="${!trainer.courses.isEmpty()}">
+            <li class="list-group-item d-flex justify-content-between align-items-center"
+                th:each="course : ${trainer.courses}">
+                <span th:text="${course.courseName}">Course Name</span>
+
+                <form th:action="@{/trainers/remove}" method="post" style="margin:0">
+                    <input type="hidden" name="trainerId" th:value="${trainer.trainerId}" />
+                    <input type="hidden" name="selectedCourseId" th:value="${course.courseId}" />
+                    <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                </form>
+            </li>
+        </ul>
+    </div>
 
 </div>
 <footer class="sparta-animated-bg">

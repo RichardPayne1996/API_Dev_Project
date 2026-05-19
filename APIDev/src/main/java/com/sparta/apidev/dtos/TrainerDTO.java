@@ -89,5 +89,9 @@ public class TrainerDTO {
         return selectedCourseId;
     }
 
+    public void setSelectedCourseId(Integer selectedCourseId){
+        this.selectedCourseId = selectedCourseId;
+    }
+
 
 }
