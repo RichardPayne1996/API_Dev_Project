@@ -73,6 +73,13 @@ public class TrainerService {
             return trainerMapper.toDTO(updated);
 
     }
+    public List<TrainerDTO> searchTrainersByName(String name) {
+        return trainerRepository
+                .findByTrainerNameContainingIgnoreCase(name)
+                .stream()
+                .map(trainerMapper::toDTO)
+                .toList();
+    }
 
 
 }
