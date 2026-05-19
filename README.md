@@ -655,18 +655,17 @@ jobs:
 ### Login Page
 <img width="1881" height="855" alt="image" src="https://github.com/user-attachments/assets/4f1c9752-0d67-4e23-85ff-c03962bed9c9" />
 
-
 ### Dashboard
-
+<img width="1914" height="889" alt="image" src="https://github.com/user-attachments/assets/ee4faa36-94c5-4933-addf-dc670a93073d" />
 
 ### Trainee Management
-_Add screenshot_
+<img width="1880" height="874" alt="image" src="https://github.com/user-attachments/assets/0190437b-8948-4eab-af4a-a5d73e249735" />
 
 ### Course Management
-_Add screenshot_
+<img width="1906" height="730" alt="image" src="https://github.com/user-attachments/assets/d5a4da74-99c6-4839-96fc-8bb58208131b" />
 
 ### Swagger Documentation
-_Add screenshot_
+<img width="1914" height="886" alt="image" src="https://github.com/user-attachments/assets/e75a4447-1de3-4d35-9200-88516ee3f8e9" />
 
 ---
 
