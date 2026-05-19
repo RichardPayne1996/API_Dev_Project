@@ -68,17 +68,9 @@ public class EnrollmentWebController {
     public String assignTrainer(@ModelAttribute TrainerDTO trainerDTO,
                                 @RequestParam("courseId") int courseId) {
         enrollmentService.assignTrainerToCourse(trainerDTO, courseId);
-        return "redirect:/trainers" + courseId;
+        return "redirect:/trainers/view";
     }
 
-    // Show form to remove trainer from course
-    @GetMapping("/trainer/remove")
-    public String showRemoveTrainerForm(Model model) {
-        model.addAttribute("trainers", trainerService.getAllTrainers());
-        model.addAttribute("courses", courseService.getAllCourses());
-        model.addAttribute("trainerDTO", new TrainerDTO());
-        return "enrollment/remove-trainer";
-    }
 
     // Remove trainer from course
     @PostMapping("/trainer/remove")

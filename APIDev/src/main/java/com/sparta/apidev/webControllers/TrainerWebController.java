@@ -3,6 +3,7 @@ package com.sparta.apidev.webControllers;
 
 import com.sparta.apidev.dtos.TrainerDTO;
 import com.sparta.apidev.dtos.TrainerMapper;
+import com.sparta.apidev.services.EnrollmentService;
 import com.sparta.apidev.services.TrainerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +15,13 @@ public class TrainerWebController {
 
     private final TrainerService trainerService;
     private final TrainerMapper trainerMapper;
+    private  final EnrollmentService enrollmentService;
 
     public TrainerWebController(TrainerService trainerService,
-                                TrainerMapper trainerMapper) {
+                                TrainerMapper trainerMapper, EnrollmentService enrollmentService) {
         this.trainerService = trainerService;
         this.trainerMapper = trainerMapper;
+        this.enrollmentService = enrollmentService;
     }
 
 
@@ -88,6 +91,14 @@ public class TrainerWebController {
 
         trainerService.deleteTrainer(id);
 
+        return "redirect:/trainers/view";
+    }
+
+    // Remove trainer from course
+    @PostMapping("/remove")
+    public String removeTrainer(@ModelAttribute TrainerDTO trainerDTO) {
+        Integer courseId = trainerDTO.getSelectedCourseId();
+        enrollmentService.removeTrainerFromCourse(trainerDTO, courseId);
         return "redirect:/trainers/view";
     }
 }
